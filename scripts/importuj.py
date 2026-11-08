@@ -120,6 +120,8 @@ def import_schedules(today):
             f"Počet odkazov: {len(anchors)}.",
             file=sys.stderr,
         )
+        if not anchors:
+            print(f"Začiatok odpovede: {content(page)[:250]}", file=sys.stderr)
         for anchor in [item for item in anchors if re.search(r"blog|poriad|sambron", item.get("href"), re.I)][:12]:
             href = urlsplit(anchor.get("href"))
             print(f"Odkaz: {href.path[:200]} — {content(anchor)[:80]}", file=sys.stderr)

@@ -7,7 +7,7 @@ Prehľad pre Šambron, Bajerovce a Hromoš. Zdrojom je [farská stránka na Moja
 1. Vytvor verejný repozitár `sambron-bohosluzby`. Nahraj celý obsah tohto priečinka do predvolenej vetvy vrátane `.github/workflows/poriadky.yml`. Pri nahrávaní cez Git sa priečinok `.github` prenesie spolu s ostatnými súbormi.
 2. V repozitári otvor **Settings → Pages → Build and deployment → Source** a vyber **GitHub Actions**.
 3. Otvor **Actions → Aktualizácia liturgických poriadkov → Run workflow**. Po úspešnom behu nájdeš URL v úlohe **publish** alebo v **Settings → Pages**. Na používateľskom účte má typicky tvar `https://TVOJ-UCET.github.io/sambron-bohosluzby/`.
-4. Ak prvý beh zlyhá, otvor krok **Načítať farské poriadky**. Výpis rozlíši problém s prístupom k zdroju, chýbajúce odkazy a nerozpoznané riadky. GitHub Pages pri chybe importu ponechá predchádzajúcu nasadenú verziu.
+4. Ak beh hlási problém s importom, otvor krok **Načítať farské poriadky**. Výpis rozlíši problém s prístupom k zdroju, chýbajúce odkazy a nerozpoznané riadky. Pri chybe importu prehľad používa naposledy uložené údaje, ak existujú.
 
 Workflow kontroluje zdroj každé dve hodiny o 17. minúte. Počíta s možnými opravami pod rovnakou URL. Pri zmene spracovaných údajov uloží nový JSON aj do repozitára. Ak verejný repozitár zostane 60 dní bez aktivity, GitHub môže naplánované spúšťanie vypnúť. Opätovne ho zapneš v záložke Actions.
 

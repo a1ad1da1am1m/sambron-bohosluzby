@@ -34,7 +34,14 @@ jobs:
       - run: python -m pip install -r requirements.txt
       - run: python -m unittest discover -s tests
       - name: Načítať farské poriadky
+        id: source
+        continue-on-error: true
         run: python scripts/importuj.py
+      - name: Ohlásiť neúspešný import
+        if: steps.source.outcome == 'failure'
+        run: |
+          echo "::warning::Import z farskej stránky zlyhal. Prehľad zobrazí naposledy uložený rozpis, ak existuje."
+          echo "⚠️ Import z farskej stránky zlyhal. Podrobnosti sú v kroku Načítať farské poriadky." >> "$GITHUB_STEP_SUMMARY"
       - name: Uložiť zmeny rozpisu
         run: |
           if ! git diff --quiet -- site/poriadky.json; then
