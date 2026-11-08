@@ -11,17 +11,23 @@
           "events": [
             {
               "time": "15:45",
-              "town": "Hromoš"
+              "town": "Hromoš",
+              "details": [
+                "+ naší zosnulí",
+                "HRAMOTY",
+                "Panychída na cintoríne"
+              ]
             },
             {
               "time": "17:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ duše v očistci",
+                "Panychída pri cerkvi"
+              ]
             }
           ],
-          "notes": [
-            "HRAMOTY",
-            "+ duše v očistci"
-          ]
+          "notes": []
         },
         {
           "date": "2026-11-03",
@@ -29,7 +35,10 @@
           "events": [
             {
               "time": "17:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Mária Petrusová"
+              ]
             }
           ],
           "notes": []
@@ -40,15 +49,25 @@
           "events": [
             {
               "time": "15:15",
-              "town": "Bajerovce"
+              "town": "Bajerovce",
+              "details": [
+                "spoveď pred odpustom"
+              ],
+              "label": "spoveď pred odpustom"
             },
             {
               "time": "15:45",
-              "town": "Bajerovce"
+              "town": "Bajerovce",
+              "details": [
+                "+ Bohumil, Juraj, ..."
+              ]
             },
             {
               "time": "17:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Ľuboš Ridilla"
+              ]
             }
           ],
           "notes": []
@@ -59,11 +78,17 @@
           "events": [
             {
               "time": "09:00",
-              "town": "Hromoš"
+              "town": "Hromoš",
+              "details": [
+                "+ Ján s panych. /výročna/"
+              ]
             },
             {
               "time": "17:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Helena Hardoňová"
+              ]
             }
           ],
           "notes": []
@@ -74,7 +99,11 @@
           "events": [
             {
               "time": "17:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Peter Sokol (SL)/slov./",
+                "Lichvarčíkova)"
+              ]
             }
           ],
           "notes": []
@@ -85,7 +114,10 @@
           "events": [
             {
               "time": "09:00",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Mária s panych. /výročna/"
+              ]
             }
           ],
           "notes": []
@@ -96,21 +128,31 @@
           "events": [
             {
               "time": "08:00",
-              "town": "Hromoš"
+              "town": "Hromoš",
+              "details": [
+                "* Michal, Jozef s rod.",
+                "Myrovanie"
+              ]
             },
             {
               "time": "09:00",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "* veriaci farnosti /csl./",
+                "Myrovanie"
+              ]
             },
             {
               "time": "10:30",
-              "town": "Bajerovce"
+              "town": "Bajerovce",
+              "details": [
+                "Odpustová slávnosť",
+                "* rod.Sekerákova",
+                "myrovanie + sprievod"
+              ]
             }
           ],
-          "notes": [
-            "myrovanie",
-            "myrovanie + sprievod"
-          ]
+          "notes": []
         }
       ]
     },
@@ -125,11 +167,18 @@
           "events": [
             {
               "time": "15:45",
-              "town": "Bajerovce"
+              "town": "Bajerovce",
+              "details": [
+                "+ Anna Sekeráková",
+                "(z pohrebu)"
+              ]
             },
             {
               "time": "17:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Katarína Lukačíková"
+              ]
             }
           ],
           "notes": []
@@ -140,11 +189,17 @@
           "events": [
             {
               "time": "15:45",
-              "town": "Hromoš"
+              "town": "Hromoš",
+              "details": [
+                "+ Michal s panych./výročná/"
+              ]
             },
             {
               "time": "17:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Cecília, Ján, ..."
+              ]
             }
           ],
           "notes": []
@@ -155,7 +210,10 @@
           "events": [
             {
               "time": "08:00",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Peter Sokol"
+              ]
             }
           ],
           "notes": []
@@ -166,7 +224,10 @@
           "events": [
             {
               "time": "08:00",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Anna Hardoňová"
+              ]
             }
           ],
           "notes": []
@@ -177,7 +238,10 @@
           "events": [
             {
               "time": "08:00",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Helena Hricková /slov./"
+              ]
             }
           ],
           "notes": []
@@ -204,8 +268,12 @@
             }
           ],
           "notes": [
-            "HRAMOTY + naší zosnulí",
-            "panych.na cintoríne"
+            "+ naší zosnulí",
+            "HRAMOTY",
+            "+ naší zosnulí",
+            "HRAMOTY",
+            "Panychída na cintoríne",
+            "Panychída na cintoríne"
           ]
         },
         {
@@ -214,15 +282,24 @@
           "events": [
             {
               "time": "08:00",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "* veriaci farnosti /slov./"
+              ]
             },
             {
               "time": "09:15",
-              "town": "Bajerovce"
+              "town": "Bajerovce",
+              "details": [
+                "* rod.Kundrátova"
+              ]
             },
             {
               "time": "10:30",
-              "town": "Hromoš"
+              "town": "Hromoš",
+              "details": [
+                "* jub.Timea"
+              ]
             }
           ],
           "notes": []
@@ -240,7 +317,10 @@
           "events": [
             {
               "time": "07:00",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Helena Hricková"
+              ]
             }
           ],
           "notes": []
@@ -251,7 +331,10 @@
           "events": [
             {
               "time": "07:00",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Mária Petrusová"
+              ]
             }
           ],
           "notes": []
@@ -262,11 +345,17 @@
           "events": [
             {
               "time": "15:45",
-              "town": "Hromoš"
+              "town": "Hromoš",
+              "details": [
+                "+ Ján, Pavlína, ..."
+              ]
             },
             {
               "time": "17:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Mária Petrusová"
+              ]
             }
           ],
           "notes": []
@@ -277,11 +366,17 @@
           "events": [
             {
               "time": "09:00",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Helena Hardoňová"
+              ]
             },
             {
               "time": "17:00",
-              "town": "Bajerovce"
+              "town": "Bajerovce",
+              "details": [
+                "* Helena Sekeráková s rod."
+              ]
             }
           ],
           "notes": []
@@ -292,11 +387,17 @@
           "events": [
             {
               "time": "15:45",
-              "town": "Bajerovce"
+              "town": "Bajerovce",
+              "details": [
+                "+ Helena s panych."
+              ]
             },
             {
               "time": "17:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Renáta, Terézia, ... /slov./"
+              ]
             }
           ],
           "notes": []
@@ -307,7 +408,10 @@
           "events": [
             {
               "time": "09:00",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Ľuboš Ridilla"
+              ]
             }
           ],
           "notes": []
@@ -318,15 +422,24 @@
           "events": [
             {
               "time": "08:00",
-              "town": "Hromoš"
+              "town": "Hromoš",
+              "details": [
+                "* Júlia, Viktor, ..."
+              ]
             },
             {
               "time": "09:15",
-              "town": "Bajerovce"
+              "town": "Bajerovce",
+              "details": [
+                "* jub.Peter s rod."
+              ]
             },
             {
               "time": "10:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "* veriaci farnosti /csl./"
+              ]
             }
           ],
           "notes": []
@@ -344,7 +457,11 @@
           "events": [
             {
               "time": "17:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Mária Petrusová",
+                "d.A.Bobuľska 36)"
+              ]
             }
           ],
           "notes": []
@@ -355,7 +472,10 @@
           "events": [
             {
               "time": "07:00",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Anna Chudíková s panych."
+              ]
             }
           ],
           "notes": []
@@ -373,7 +493,11 @@
               "town": "Šambron"
             }
           ],
-          "notes": []
+          "notes": [
+            "spoveď pred odpustom",
+            "+ Helena s panych.",
+            "+ Mária Bialková"
+          ]
         },
         {
           "date": "2026-10-15",
@@ -381,11 +505,17 @@
           "events": [
             {
               "time": "09:00",
-              "town": "Bajerovce"
+              "town": "Bajerovce",
+              "details": [
+                "+ Igor"
+              ]
             },
             {
               "time": "17:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Peter, Ľuboš"
+              ]
             }
           ],
           "notes": []
@@ -396,7 +526,11 @@
           "events": [
             {
               "time": "17:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Cyril, Margita s panych.",
+                "/slov./"
+              ]
             }
           ],
           "notes": []
@@ -407,7 +541,10 @@
           "events": [
             {
               "time": "09:00",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Anna Hardoňová"
+              ]
             }
           ],
           "notes": []
@@ -418,20 +555,29 @@
           "events": [
             {
               "time": "07:45",
-              "town": "Bajerovce"
+              "town": "Bajerovce",
+              "details": [
+                "* rod.Kormoš a Pješčak"
+              ]
             },
             {
               "time": "09:00",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "* veriaci farnosti /slov./"
+              ]
             },
             {
               "time": "10:30",
-              "town": "Hromoš"
+              "town": "Hromoš",
+              "details": [
+                "Odpustová slávnosť",
+                "* Tomáš, Zuzana,...",
+                "myrovanie a sprievod"
+              ]
             }
           ],
-          "notes": [
-            "myrovanie a sprievod"
-          ]
+          "notes": []
         }
       ]
     },
@@ -446,7 +592,10 @@
           "events": [
             {
               "time": "17:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Mária s panych. /výročna/"
+              ]
             }
           ],
           "notes": []
@@ -457,7 +606,10 @@
           "events": [
             {
               "time": "17:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Mária Petrusová"
+              ]
             }
           ],
           "notes": []
@@ -468,11 +620,17 @@
           "events": [
             {
               "time": "15:45",
-              "town": "Bajerovce"
+              "town": "Bajerovce",
+              "details": [
+                "+ Helena, Ján, …"
+              ]
             },
             {
               "time": "17:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Peter Sokol"
+              ]
             }
           ],
           "notes": []
@@ -483,15 +641,25 @@
           "events": [
             {
               "time": "09:00",
-              "town": "Hromoš"
+              "town": "Hromoš",
+              "details": [
+                "+ Štefan, Zuzana, …"
+              ]
             },
             {
               "time": "11:00",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "spoveď chorých /ZDOLA/"
+              ],
+              "label": "spoveď chorých /ZDOLA/"
             },
             {
               "time": "17:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Ľuboš s panych. /40 dň./"
+              ]
             }
           ],
           "notes": []
@@ -502,7 +670,11 @@
           "events": [
             {
               "time": "17:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Júlia, Štefan, Peter",
+                "/ slov./"
+              ]
             }
           ],
           "notes": []
@@ -513,7 +685,10 @@
           "events": [
             {
               "time": "09:00",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "+ Blanka Šmikniarová"
+              ]
             }
           ],
           "notes": []
@@ -524,24 +699,37 @@
           "events": [
             {
               "time": "07:45",
-              "town": "Hromoš"
+              "town": "Hromoš",
+              "details": [
+                "* Michal, Jozef s rod."
+              ]
             },
             {
               "time": "09:00",
-              "town": "Bajerovce"
+              "town": "Bajerovce",
+              "details": [
+                "* Peter, Magdalena"
+              ]
             },
             {
               "time": "10:00",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "slávnostný ruženec"
+              ],
+              "label": "slávnostný ruženec"
             },
             {
               "time": "10:30",
-              "town": "Šambron"
+              "town": "Šambron",
+              "details": [
+                "* veriaci farnosti /csl./",
+                "myrovanie a sprievod"
+              ]
             }
           ],
           "notes": [
-            "slávnostný ruženec",
-            "myrovanie a sprievod"
+            "Odpustová slávnosť"
           ]
         }
       ]
