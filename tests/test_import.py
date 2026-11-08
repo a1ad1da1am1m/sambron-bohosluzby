@@ -86,7 +86,7 @@ class ImportTest(unittest.TestCase):
         self.assertEqual(wednesday["events"][2]["details"], ["+ Michal 23", "(r. Príkladova a Darcu)"])
         self.assertEqual(sunday["events"][2]["details"],
                          ["Odpustová slávnosť", "* rod. Príkladova 23", "myrovanie + sprievod"])
-        self.assertEqual(sunday["events"][0]["details"], ["* Juraj s rod.", "(r.Príkladova 75)", "myrovanie"])
+        self.assertEqual(sunday["events"][0]["details"], ["* Juraj s rod.", "(r.Príkladova 75)", "Myrovanie"])
         self.assertEqual(sunday["notes"], [])
 
     def test_range_spans_new_year(self):
