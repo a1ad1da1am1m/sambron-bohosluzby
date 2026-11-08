@@ -733,5 +733,37 @@
         }
       ]
     }
+  ],
+  "announcements": [
+    {
+      "title": "Dôležité",
+      "source": "https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb/-/blogs/dolezite",
+      "published": "2026-11-07",
+      "paragraphs": [
+        "Zajtra tzn.08.11: bude sv.liturgia v Šambrone o 09.00 hod s myrovaním. Na papieri a na obchode je uvedený chybný čas. Vďaka. o.Pavol"
+      ],
+      "images": [],
+      "links": []
+    },
+    {
+      "title": "Púť do Máriapocsi",
+      "source": "https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb/-/blogs/put-do-mariapocsi",
+      "published": "2026-09-13",
+      "paragraphs": [
+        "Prihlasovanie na púť je ukončené. Tí, ktorí ste sa prihlásili - odchod busu je: Bajerovce - 5.00 hod, Šambron - 5:10 hod., Hromoš - 5:20 hod, Vislanka - 5:30 hod. Cestovné: max. 25 eur. /podľa počtu v buse/ ZOBRAŤ: rozkladacia stolička, hotovosť v eurách, prípadne platobná karta a obed z vlastných zásob. Duchovný sprievodca bude o.P.Kijovský z Vislanky."
+      ],
+      "images": [],
+      "links": []
+    },
+    {
+      "title": "Dôležitý oznam",
+      "source": "https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb/-/blogs/dolezity-oznam",
+      "published": "2026-08-28",
+      "paragraphs": [
+        "FARSKÝ OZNAM: Zajtra tzn.v sobotu 29.08. slávime v našom obrade Sťatie úctyhodnej hlavy Sv. Jána Krstiteľa. Tento deň je predpisaná zdržanlivosť od mäsa /ako bežný piatok/. Sv.liturgia v Šambrone bude o 09.00 hod za rod.Mindekovu č.12. V nedeľu 30.08. bude sv.liturgia o 08.15 hod v slov.jazyku. Dajte si vedieť navzájom túto informáciu. VĎAKA. o.pavol"
+      ],
+      "images": [],
+      "links": []
+    }
   ]
 }
