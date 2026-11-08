@@ -46,10 +46,10 @@ a:hover { text-decoration-thickness: 2px; }
   content: "";
   position: absolute;
   z-index: -1;
-  inset: 0 0 0 auto;
-  width: min(56%, 60rem);
-  background: linear-gradient(180deg, #142f27d9, #142f2700 43%), linear-gradient(90deg, #142f274a, #142f2714), url("chram-sambron.webp") center top / cover no-repeat;
-  mask-image: linear-gradient(90deg, transparent, #000 42%);
+  inset: 0 max(0rem, calc((100% - 76rem) / 2)) 0 auto;
+  width: min(48%, 26rem);
+  background: linear-gradient(180deg, #142f2799, #142f2700 30%, #142f2726 80%, #142f2780), linear-gradient(90deg, #142f2733, #142f2714), url("chram-sambron.webp") center top / cover no-repeat;
+  mask-image: linear-gradient(90deg, transparent, #000 25%, #000 78%, transparent);
 }
 .hero-intro { padding: clamp(2.25rem, 5vw, 4.5rem) var(--header-gutter) clamp(2.75rem, 5.5vw, 5rem); }
 .eyebrow { display: flex; align-items: center; gap: .45rem; color: var(--accent); text-transform: uppercase; font-weight: 800; font-size: .71rem; letter-spacing: .105em; }
@@ -134,7 +134,7 @@ footer p { margin-block: .35rem .65rem; }
 }
 @media (max-width: 41rem) {
   .masthead { min-height: 4rem; }
-  .hero-feature::before { width: 66%; background: linear-gradient(180deg, #142f27db, #142f2726 46%), linear-gradient(90deg, #142f27bb, #142f2755), url("chram-sambron.webp") center top / cover no-repeat; }
+  .hero-feature::before { right: 0; width: 66%; mask-image: linear-gradient(90deg, transparent, #000 45%); background: linear-gradient(180deg, #142f27db, #142f2726 46%), linear-gradient(90deg, #142f27bb, #142f2755), url("chram-sambron.webp") center top / cover no-repeat; }
   .quick { grid-template-columns: 1fr; }
   .quick section.quick-next { padding-left: 0; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .15rem .8rem; border-left: 0; border-top: 1px solid var(--header-line); }
   .quick-next .quick-heading { margin-bottom: 0; }
