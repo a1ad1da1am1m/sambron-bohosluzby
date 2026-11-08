@@ -21,6 +21,19 @@ def main():
             print(f"CHYBA {slug}: {error}")
             totals["chyby"] += 1
             continue
+        if slug in {"liturgicky-pori-461", "liturgicky-pori-460", "liturgicky-pori-457", "liturgicky-pori-449"}:
+            for row in page.xpath("//tr"):
+                cells = row.xpath("./td|./th")
+                if len(cells) < 4 or not DAY.match(content(cells[0])):
+                    continue
+                print(f"LAYOUT {slug} {content(cells[0])}")
+                for index in (2, 3):
+                    cell = cells[index]
+                    for block in cell.xpath("./*") or [cell]:
+                        value = content(block)
+                        if index == 3 and value.startswith(("+", "*", "(")):
+                            value = value[0] + (" = " + value.split("=", 1)[1] if "=" in value else " …")
+                        print(f"LAYOUT {index} {block.tag} {block.get('style', '')[:220]} {value!r}")
         try:
             schedule = parse_article(page, url)
         except ValueError as error:
