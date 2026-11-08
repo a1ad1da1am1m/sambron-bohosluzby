@@ -1,7 +1,10 @@
+import gzip
 import json
 import tempfile
 import unittest
 from datetime import date
+from email.message import Message
+from io import BytesIO
 from pathlib import Path
 from unittest.mock import patch
 from urllib.error import URLError
@@ -22,6 +25,14 @@ def article(period, rows):
 
 
 class ImportTest(unittest.TestCase):
+    def test_fetch_decodes_gzip_without_content_encoding(self):
+        response = BytesIO(gzip.compress("<title>Poriadok Šambron</title>".encode()))
+        response.headers = Message()
+        response.url = importuj.SOURCE
+        with patch.object(importuj, "urlopen", return_value=response):
+            source = importuj.fetch(importuj.SOURCE)
+        self.assertEqual(source.xpath("string(//title)"), "Poriadok Šambron")
+
     def test_discovers_unique_parish_posts(self):
         links = importuj.article_links(page(f"""
             <a href="{ARTICLE}?show=1">Liturgický poriadok</a>

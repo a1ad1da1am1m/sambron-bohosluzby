@@ -1,9 +1,11 @@
 """Načíta verejné liturgické poriadky a vytvorí údaje pre statický web."""
 
+import gzip
 import json
 import re
 import sys
 from datetime import date, datetime, timedelta
+from io import BytesIO
 from pathlib import Path
 from urllib.error import URLError
 from urllib.parse import unquote, urljoin, urlsplit
@@ -35,6 +37,11 @@ def fetch(url):
         body = response.read(MAX_BYTES + 1)
         if len(body) > MAX_BYTES:
             raise ValueError("HTML prekročilo povolenú veľkosť.")
+        if response.headers.get("Content-Encoding", "").lower() == "gzip" or body.startswith(b"\x1f\x8b"):
+            with gzip.GzipFile(fileobj=BytesIO(body)) as compressed:
+                body = compressed.read(MAX_BYTES + 1)
+            if len(body) > MAX_BYTES:
+                raise ValueError("Rozbalené HTML prekročilo povolenú veľkosť.")
         charset = response.headers.get_content_charset()
         return html.fromstring(
             body, parser=html.HTMLParser(encoding=charset or "utf-8"), base_url=response.url
@@ -120,8 +127,6 @@ def import_schedules(today):
             f"Počet odkazov: {len(anchors)}.",
             file=sys.stderr,
         )
-        if not anchors:
-            print(f"Začiatok odpovede: {content(page)[:250]}", file=sys.stderr)
         for anchor in [item for item in anchors if re.search(r"blog|poriad|sambron", item.get("href"), re.I)][:12]:
             href = urlsplit(anchor.get("href"))
             print(f"Odkaz: {href.path[:200]} — {content(anchor)[:80]}", file=sys.stderr)
