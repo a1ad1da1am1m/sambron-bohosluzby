@@ -1,6 +1,6 @@
 # Poriadok bohoslužieb · Farnosť Šambron
 
-Prehľad pre Šambron, Bajerovce a Hromoš. Zdrojom je [farská stránka na Moja Komunita](https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb). Stránka ukazuje dnešné časy, najbližší termín a jednotlivé poriadky s odkazom na originál. Úmysly a liturgické poznámky sa priraďujú k času, keď majú v zdroji zodpovedajúce bloky v rovnakom poradí. Pri nejednoznačnom zápise ostanú pri dni. Čísla pri úmysloch a odkazy na darcov sú vo farskom origináli. Samostatné farské oznamy sú pod rozpisom s dátumom zverejnenia, textom, obrázkami, prílohami a odkazom na originál.
+Prehľad pre Šambron, Bajerovce a Hromoš. Zdrojom je [farská stránka na Moja Komunita](https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb). Stránka ukazuje dnešné časy, najbližší termín a jednotlivé poriadky s odkazom na originál. Úmysly a liturgické poznámky sa priraďujú k času, keď majú v zdroji zodpovedajúce bloky v rovnakom poradí. Pri nejednoznačnom zápise ostanú pri dni. Úmysly aj údaje o darcoch vrátane pôvodných skratiek a čísel sa zachovávajú podľa farského originálu. Viacriadkové údaje v zátvorkách sa spájajú do jedného riadka. Samostatné farské oznamy sú pod rozpisom s dátumom zverejnenia, textom, obrázkami, prílohami a odkazom na originál.
 
 ## Spustenie na GitHube
 

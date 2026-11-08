@@ -29,7 +29,7 @@ CLOCK = r"(?<!\d)([01]?\d|2[0-3])\s*[.:]\s*([0-5]\d)(?!\d)"
 EVENT = re.compile(r"(?<!\w)([ŠBH])\s*\.?\s*" + CLOCK, re.I)
 NO_LITURGY = re.compile(r"\b(?:sv\.?\s*)?liturgia\s+nebude\b", re.I)
 STANDALONE = re.compile(r"^(?:slávnostný\s+)?(?:spoveď|ruženec|večiereň|moleben|zraz)\b", re.I)
-PRIVATE_REFERENCE = re.compile(r"\([ \t]*[rd][ \t]*\.[^)]*\)", re.I)
+DONOR_REFERENCE = re.compile(r"\([ \t]*[rd][ \t]*\.[^)]*\)", re.I)
 MAX_BYTES = 3_000_000
 
 
@@ -139,7 +139,8 @@ def comment_lines(cell):
             parts.append("\n")
 
     walk(cell)
-    for line in PRIVATE_REFERENCE.sub("", "".join(parts)).splitlines():
+    text = DONOR_REFERENCE.sub(lambda match: " ".join(match.group().split()), "".join(parts))
+    for line in text.splitlines():
         line = " ".join(line.split())
         if line:
             yield line
@@ -169,7 +170,7 @@ def event_details(cells, events):
             elif line.startswith(("+", "*")) or STANDALONE.match(text):
                 if line.startswith(("+", "*")):
                     intention, _, note = text.partition("=")
-                    intention = re.sub(r"\s+\d+(?=\s*(?:/|$))", "", intention.strip())
+                    intention = intention.strip()
                     details = [intention]
                     if note.strip(" ="):
                         details.append(note_text(note))
