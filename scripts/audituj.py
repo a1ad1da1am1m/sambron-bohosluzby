@@ -9,7 +9,16 @@ from importuj import CLOCK, DAY, SOURCE, article_links, content, fetch, parse_ar
 
 
 def main():
-    urls = article_links(fetch(SOURCE))[:20]
+    listing = fetch(SOURCE)
+    for a in listing.xpath('//a[@href]'):
+        href = a.get('href', '')
+        if '/-/blogs/' in href and 'liturgicky-' not in href:
+            print('OTHER LINK', href, content(a)[:120])
+    notice = fetch(SOURCE + '/-/blogs/dolezity-oznam')
+    for node in notice.xpath('//*[@class]'):
+        if any(word in node.get('class', '') for word in ['entry-', 'publish', 'asset-']):
+            print('NOTICE NODE', node.tag, node.get('class'), content(node)[:5000])
+    urls = article_links(listing)[:20]
     if not urls:
         sys.exit("Na farskej stránke sa nenašli odkazy na poriadky.")
     totals = Counter()
