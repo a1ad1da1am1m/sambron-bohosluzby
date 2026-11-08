@@ -14,8 +14,11 @@ const fullDate = new Intl.DateTimeFormat("sk-SK", {
 const shortDate = new Intl.DateTimeFormat("sk-SK", {
   day: "numeric", month: "numeric", year: "numeric", timeZone: "UTC",
 });
+const weekday = new Intl.DateTimeFormat("sk-SK", { weekday: "short", timeZone: "UTC" });
+const monthDay = new Intl.DateTimeFormat("sk-SK", { day: "numeric", month: "numeric", timeZone: "UTC" });
 const format = (formatter, date) => formatter.format(new Date(date + "T12:00:00Z"));
 let schedules = [];
+let renderedDate;
 
 function element(tag, text = "", className = "") {
   const node = document.createElement(tag);
@@ -76,12 +79,15 @@ function renderSummary(now, active) {
   }
 }
 
-function render() {
-  const now = localClock();
+function render(now = localClock()) {
+  renderedDate = now.date;
   const active = scheduleOn(now.date);
   const selected = schedules.find((item) => item.source === periodFilter.value) ?? active;
   renderSummary(now, active);
   const target = get("schedule");
+  const days = get("days");
+  days.replaceChildren();
+  days.hidden = true;
   target.replaceChildren();
   get("range").textContent = selected
     ? format(shortDate, selected.start) + " – " + format(shortDate, selected.end)
@@ -100,11 +106,14 @@ function render() {
   for (const day of selected.days) {
     const events = eventsInTown(day);
     if (townFilter.value && !events.length && !day.message) continue;
-    const card = element("article", "", day.date === now.date ? "day current" : "day");
+    const isToday = day.date === now.date;
+    const card = element("article", "", isToday ? "day current" : "day");
+    card.id = "den-" + day.date;
+    card.tabIndex = -1;
     const caption = element("div");
     caption.append(element("h3", format(fullDate, day.date)));
     if (day.feast) caption.append(element("p", day.feast, "detail"));
-    if (day.date === now.date) caption.append(element("span", "Dnes", "today-tag"));
+    if (isToday) caption.append(element("span", "Dnes", "today-tag"));
     const details = element("div");
     details.append(events.length ? eventList(events) : element("p", day.message ?? "Čas nie je uvedený.", "detail"));
     if (day.notes.length) {
@@ -114,9 +123,16 @@ function render() {
     }
     card.append(caption, details);
     target.append(card);
+    const dayLink = element("a", "", "day-link");
+    dayLink.href = "#" + card.id;
+    dayLink.setAttribute("aria-label", format(fullDate, day.date));
+    if (isToday) dayLink.setAttribute("aria-current", "date");
+    dayLink.append(element("span", format(weekday, day.date)), element("strong", format(monthDay, day.date)));
+    days.append(dayLink);
     visibleDays++;
   }
 
+  days.hidden = !visibleDays;
   if (!visibleDays) {
     target.append(element("p", "Vo vybranom poriadku sa nenašiel termín pre túto obec.", "notice"));
   }
@@ -134,10 +150,17 @@ async function init() {
       const label = format(shortDate, item.start) + " – " + format(shortDate, item.end);
       periodFilter.add(new Option(label, item.source));
     }
-    townFilter.addEventListener("change", render);
-    periodFilter.addEventListener("change", render);
+    townFilter.addEventListener("change", () => render());
+    periodFilter.addEventListener("change", () => render());
     render();
-    setInterval(render, 60_000);
+    if (location.hash.startsWith("#den-")) {
+      get(location.hash.slice(1))?.scrollIntoView();
+    }
+    setInterval(() => {
+      const now = localClock();
+      if (now.date !== renderedDate) render(now);
+      else renderSummary(now, scheduleOn(now.date));
+    }, 60_000);
   } catch (error) {
     get("today").textContent = "Rozpis sa nepodarilo načítať.";
     get("next").textContent = "Údaje sú dočasne nedostupné.";

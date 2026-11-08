@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0d1a22">
+  <meta name="theme-color" content="#f5f3eb">
   <meta name="description" content="Dnešné časy a aktuálny liturgický poriadok farnosti Šambron pre Šambron, Bajerovce a Hromoš.">
   <title>Poriadok bohoslužieb | Farnosť Šambron</title>
-  <link rel="stylesheet" href="style.css?v=3">
-  <script src="prehlad.js?v=3" defer></script>
+  <link rel="icon" href="kriz.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css?v=4">
+  <script src="prehlad.js?v=4" defer></script>
 </head>
 <body>
   <a class="skip" href="#rozpis">Preskočiť na rozpis</a>
@@ -15,33 +16,47 @@
     <div class="wrap">
       <nav class="masthead" aria-label="Hlavná navigácia">
         <a class="brand" href="./">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v9M8 6h8m-7 3 6 1.5M4 21v-6l8-5 8 5v6H4Zm6 0v-4h4v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span>Farnosť Šambron</span>
+          <img src="kriz.svg" alt="" width="42" height="42">
+          <span>Farnosť Šambron<small>Gréckokatolícka cirkev</small></span>
         </a>
-        <a class="mast-link" href="#o-prehlade">O prehľade</a>
+        <div class="nav-links">
+          <a class="about-link" href="#o-prehlade">O prehľade</a>
+          <a class="nav-schedule" href="#rozpis">Rozpis <span aria-hidden="true">↓</span></a>
+        </div>
       </nav>
-      <div class="hero-intro">
-        <p class="eyebrow">Gréckokatolícka farnosť</p>
-        <h1>Poriadok<br>bohoslužieb</h1>
-        <p class="places">Šambron <span>·</span> Bajerovce <span>·</span> Hromoš</p>
-      </div>
-      <div class="quick" aria-live="polite">
-        <section class="quick-today" aria-labelledby="today-title">
-          <div class="quick-heading">
-            <h2 id="today-title"><span class="status-dot" aria-hidden="true"></span>Dnes vo farnosti</h2>
-            <p id="today-date"></p>
+      <div class="hero-grid">
+        <div class="hero-main">
+          <div class="hero-intro">
+            <p class="eyebrow"><span aria-hidden="true"></span>Liturgický kalendár</p>
+            <h1>Poriadok<br>bohoslužieb</h1>
+            <p class="places">Šambron <span>·</span> Bajerovce <span>·</span> Hromoš</p>
           </div>
-          <div id="today"><p class="detail">Načítavam poriadok…</p></div>
-        </section>
-        <section class="quick-next" aria-labelledby="next-title">
-          <div class="quick-heading">
-            <h2 id="next-title">Najbližší termín</h2>
-            <p id="next-date" hidden></p>
+          <div class="quick" aria-live="polite">
+            <section class="quick-today" id="dnes" aria-labelledby="today-title">
+              <div class="quick-heading">
+                <h2 id="today-title"><span class="status-dot" aria-hidden="true"></span>Dnes</h2>
+                <p id="today-date"></p>
+              </div>
+              <div id="today"><p class="detail">Načítavam poriadok…</p></div>
+            </section>
+            <section class="quick-next" aria-labelledby="next-title">
+              <div class="quick-heading">
+                <h2 id="next-title">Najbližší termín</h2>
+                <p id="next-date" hidden></p>
+              </div>
+              <div id="next"><p class="detail">Načítavam poriadok…</p></div>
+            </section>
           </div>
-          <div id="next"><p class="detail">Načítavam poriadok…</p></div>
-        </section>
+          <a class="jump" href="#rozpis"><span aria-hidden="true">↓</span> Pozrieť týždenný rozpis</a>
+        </div>
+        <figure class="church">
+          <img src="chram-sambron.webp" alt="Chrám Ochrany Presvätej Bohorodičky v Šambrone s bledozelenou fasádou a tmavou vežou" width="500" height="767" fetchpriority="high">
+          <figcaption>
+            <span>Farský chrám</span>
+            <strong>Chrám Ochrany Presvätej Bohorodičky</strong>
+          </figcaption>
+        </figure>
       </div>
-      <a class="jump" href="#rozpis">Celý rozpis <span aria-hidden="true">↓</span></a>
     </div>
   </header>
   <main class="wrap">
@@ -49,7 +64,7 @@
     <section class="schedule-section" id="rozpis" aria-labelledby="schedule-title">
       <div class="toolbar">
         <div class="schedule-heading">
-          <p class="eyebrow">Liturgický kalendár</p>
+          <p class="eyebrow"><span aria-hidden="true"></span>Program farnosti</p>
           <h2 id="schedule-title">Týždenný rozpis</h2>
           <p id="range" class="detail"></p>
         </div>
@@ -69,6 +84,7 @@
           </label>
         </div>
       </div>
+      <nav id="days" class="days" aria-label="Prejsť na deň rozpisu" hidden></nav>
       <div id="schedule" class="schedule" aria-live="polite"></div>
     </section>
   </main>
@@ -78,11 +94,11 @@
         <h2>O prehľade</h2>
         <p>Časy preberáme z farských poriadkov. Úmysly, úplné oznamy a prípadné zmeny nájdete vo farskom origináli.</p>
         <a href="https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb">Farské poriadky <span aria-hidden="true">↗</span></a>
-        <p class="art-credit">Ilustrácia v hlavičke zobrazuje Chrám Ochrany Presvätej Bohorodičky v Šambrone. <a href="https://sk.wikipedia.org/wiki/S%C3%BAbor:Cerkovsambron.png">Fotografia na Wikipédii</a></p>
+        <p class="photo-credit">Fotografia chrámu · GRKAT PO · <a href="https://commons.wikimedia.org/wiki/File:Cerkovsambron.png">Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> · WebP, výrez pri zobrazení</p>
       </div>
       <details class="developer">
         <summary>Informácie pre developerov</summary>
-        <p>GitHub Actions každé dve hodiny kontroluje farské príspevky. Python z ich HTML tabuliek vyberá dátumy, časy, obce a vybrané poznámky. Pri oprave pôvodného príspevku sa upraví aj uložený rozpis.</p>
+        <p>GitHub Actions každé dve hodiny kontroluje farské príspevky. Python z HTML tabuliek vyberá dátumy, časy, obce a vybrané poznámky. Pri oprave pôvodného príspevku sa upraví aj uložený rozpis.</p>
         <p>GitHub Pages zobrazuje statický web, ktorý číta <code>poriadky.json</code> a používa časové pásmo <code>Europe/Bratislava</code>. Pri výpadku zdroja ostanú dostupné posledné uložené údaje s pôvodným rozsahom dátumov.</p>
         <ul>
           <li><a href="poriadky.json">Dáta v JSON</a></li>

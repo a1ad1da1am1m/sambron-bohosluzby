@@ -26,4 +26,4 @@ Prehľad otvor na <http://localhost:8000>. Čerstvý projekt má prázdny JSON a
 
 Workflow **Kontrola formátov farských poriadkov** preverí až 20 najnovších poriadkov zo zoznamu a vypíše spracované termíny aj odchýlky bez zmeny verejného JSON. Spustiť ho možno ručne v záložke Actions alebo príkazom `python scripts/audituj.py`. Pri rozpore s nadpisom sa použijú dátumy z tabuľky, ak tvoria jediný úplný týždeň v okolí uvedených dátumov. Čas bez označenej obce sa zobrazí pri všetkých obciach s vysvetlením.
 
-Hlavička používa pôvodnú vektorovú ilustráciu šambronskej cerkvi. [Fotografia na Wikipédii](https://sk.wikipedia.org/wiki/S%C3%BAbor:Cerkovsambron.png) je v pätičke dostupná ako odkaz.
+Hlavička používa fotografiu šambronskej cerkvi dodanú pre tento web. V pätičke je odkaz na [záznam snímky na Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Cerkovsambron.png).
