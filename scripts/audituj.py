@@ -4,7 +4,6 @@ from collections import Counter
 from datetime import date
 import re
 import sys
-from urllib.error import URLError
 
 from importuj import CLOCK, DAY, SOURCE, article_links, content, fetch, parse_article
 
@@ -18,9 +17,18 @@ def main():
         slug = url.rsplit("/", 1)[-1]
         try:
             page = fetch(url)
-            schedule = parse_article(page, url)
-        except (ValueError, OSError, URLError) as error:
+        except OSError as error:
             print(f"CHYBA {slug}: {error}")
+            totals["chyby"] += 1
+            continue
+        try:
+            schedule = parse_article(page, url)
+        except ValueError as error:
+            print(f"CHYBA {slug}: {error}")
+            for row in page.xpath("//tr"):
+                cells = [content(cell) for cell in row.xpath("./td|./th")]
+                if len(cells) >= 3 and DAY.match(cells[0]):
+                    print(f"  Riadok {cells[0]}: {cells[2][:110]}")
             totals["chyby"] += 1
             continue
         start = date.fromisoformat(schedule["start"])
