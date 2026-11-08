@@ -171,3 +171,7 @@ footer p { margin-block: .35rem .65rem; }
 .announcement-body p + p { margin-top: .75rem; }
 .announcement-media { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1rem; }
 .announcement-media img { display: block; max-width: 100%; max-height: 26rem; object-fit: contain; }
+
+.notice-shortcut { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .3rem 1rem; margin-bottom: 1.4rem; padding: .85rem 1rem; border-left: 3px solid var(--accent); background: var(--pale); }
+.notice-shortcut a { font-weight: 720; }
+.notice-shortcut span { color: var(--muted); font-size: .8rem; }

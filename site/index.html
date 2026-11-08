@@ -53,6 +53,7 @@
   <main class="wrap">
     <noscript><p class="notice">Zapnite JavaScript alebo otvorte pôvodný farský rozpis cez odkaz v pätičke.</p></noscript>
     <section class="schedule-section" id="rozpis" aria-labelledby="schedule-title">
+      <div id="notice-shortcut" class="notice-shortcut" hidden></div>
       <div class="toolbar">
         <div class="schedule-heading">
           <p class="eyebrow"><span aria-hidden="true"></span>Program farnosti</p>
@@ -93,13 +94,13 @@
     <div class="wrap footer-inner">
       <div>
         <h2>O prehľade</h2>
-        <p>Časy a liturgické poznámky preberáme z farských poriadkov. Úplné oznamy a údaje pri úmysloch sú vo farskom origináli.</p>
+        <p>Časy a liturgické poznámky preberáme z farských poriadkov. Samostatné oznamy nájdete pod rozpisom; úplné údaje pri úmysloch vo farskom origináli.</p>
         <a href="https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb">Farské poriadky <span aria-hidden="true">↗</span></a>
         <p class="photo-credit">Fotografia chrámu · GRKAT PO · <a href="https://commons.wikimedia.org/wiki/File:Cerkovsambron.png">Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> · WebP, výrez pri zobrazení<span class="desktop-photo-credit"> · Pozadie pre počítač rozšírené pomocou AI</span></p>
       </div>
       <details class="developer">
         <summary>Informácie pre developerov</summary>
-        <p>GitHub Actions každé dve hodiny kontroluje farské príspevky. Python z HTML tabuliek vyberá dátumy, časy, obce a vybrané poznámky. Pri oprave pôvodného príspevku sa upraví aj uložený rozpis.</p>
+        <p>GitHub Actions každé dve hodiny kontroluje farské príspevky. Python z HTML tabuliek vyberá dátumy, časy, obce a vybrané poznámky. Samostatné oznamy preberá s dátumom, textom, obrázkami a odkazmi na prílohy. Pri oprave pôvodného príspevku sa upraví aj uložený obsah.</p>
         <p>GitHub Pages zobrazuje statický web, ktorý číta <code>poriadky.json</code> a používa časové pásmo <code>Europe/Bratislava</code>. Pri výpadku zdroja ostanú dostupné posledné uložené údaje s pôvodným rozsahom dátumov.</p>
         <ul>
           <li><a href="poriadky.json">Dáta v JSON</a></li>

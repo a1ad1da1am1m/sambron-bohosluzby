@@ -166,7 +166,19 @@ function renderAnnouncements(items) {
   const target = get("announcements");
   target.replaceChildren();
   get("oznamy").hidden = !items.length;
-  const cutoff = new Date(localClock().date + "T12:00:00Z");
+  const now = localClock().date;
+  const recentDate = new Date(now + "T12:00:00Z");
+  recentDate.setUTCDate(recentDate.getUTCDate() - 14);
+  const recent = items.find(item => item.published && item.published >= recentDate.toISOString().slice(0,10) && item.published <= now);
+  const shortcut = get("notice-shortcut");
+  shortcut.replaceChildren();
+  shortcut.hidden = !recent;
+  if (recent) {
+    const link = element("a", "Z farského webu: " + recent.title + " →");
+    link.href = "#oznamy";
+    shortcut.append(link, element("span", "Zverejnené " + format(shortDate, recent.published)));
+  }
+  const cutoff = new Date(now + "T12:00:00Z");
   cutoff.setUTCDate(cutoff.getUTCDate() - 45);
   const cutoffDate = cutoff.toISOString().slice(0, 10);
   for (const item of items) {
