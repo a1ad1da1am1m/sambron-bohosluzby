@@ -29,7 +29,7 @@ CLOCK = r"(?<!\d)([01]?\d|2[0-3])\s*[.:]\s*([0-5]\d)(?!\d)"
 EVENT = re.compile(r"(?<!\w)([ŠBH])\s*\.?\s*" + CLOCK, re.I)
 NO_LITURGY = re.compile(r"\b(?:sv\.?\s*)?liturgia\s+nebude\b", re.I)
 STANDALONE = re.compile(r"^(?:slávnostný\s+)?(?:spoveď|ruženec|večiereň|moleben|zraz)\b", re.I)
-PRIVATE_REFERENCE = re.compile(r"^\(\s*[rd]\s*\.", re.I)
+PRIVATE_REFERENCE = re.compile(r"\([ \t]*[rd][ \t]*\.[^)]*\)", re.I)
 MAX_BYTES = 3_000_000
 
 
@@ -139,11 +139,8 @@ def comment_lines(cell):
             parts.append("\n")
 
     walk(cell)
-    for line in "".join(parts).splitlines():
+    for line in PRIVATE_REFERENCE.sub("", "".join(parts)).splitlines():
         line = " ".join(line.split())
-        if PRIVATE_REFERENCE.match(line):
-            continue
-        line = re.sub(r"\s*\(\s*[rd]\s*\.[^)]*\)", "", line, flags=re.I)
         if line:
             yield line
 

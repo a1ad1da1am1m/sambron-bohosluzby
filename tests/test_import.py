@@ -70,7 +70,7 @@ class ImportTest(unittest.TestCase):
             <p>+ duše v očistci</p><p>= panych.pri cerkvi =</p></td></tr>
             <tr><td>STREDA 04.11.</td><td>Sviatok</td><td>B 15.15<br>B 15.45<br>Š 17.30</td>
             <td><p><i>= spoveď pred odpustom</i><br>+ Ján, Juraj, ...</p><p>(d.A. Príkladová 41)</p>
-            <p>+ Michal 23</p></td></tr>
+            <p>+ Michal 23</p><p>(r. Príkladova a<br>Darcu)</p></td></tr>
             <tr><td>NEDEĽA 08.11.</td><td>Nedeľa</td><td>H 08.00<br>Š 09.00<br>B 10.30</td>
             <td><p>* Juraj s rod.<br>(r.Príkladova 75)<br>= myrovanie =<br>* veriaci farnosti /csl./
             <br>= myrovanie =<br><u>ODPUST.SLÁVNOSŤ</u><br>* rod. Príkladova 23</p>
