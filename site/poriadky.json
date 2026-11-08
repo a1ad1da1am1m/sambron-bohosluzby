@@ -1,6 +1,149 @@
 {
   "schedules": [
     {
+      "start": "2026-11-09",
+      "end": "2026-11-15",
+      "source": "https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb/-/blogs/liturgicky-pori-462",
+      "days": [
+        {
+          "date": "2026-11-09",
+          "feast": "Prep.Matróna a Teoktista",
+          "events": [
+            {
+              "time": "17:30",
+              "town": "Šambron",
+              "details": [
+                "+ Ľuboš Ridilla",
+                "(r.Koršňakova)"
+              ]
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-10",
+          "feast": "Sv.ap.Erast a ost.",
+          "events": [
+            {
+              "time": "15:45",
+              "town": "Hromoš",
+              "details": [
+                "* Jaroslav",
+                "(r.Gerykova)"
+              ]
+            },
+            {
+              "time": "17:30",
+              "town": "Šambron",
+              "details": [
+                "+ Mária Petrusová 85",
+                "(r.Kotrusova)"
+              ]
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-11",
+          "feast": "Sv.muč.Ménas a ost.",
+          "events": [
+            {
+              "time": "17:30",
+              "town": "Šambron",
+              "details": [
+                "+ Mária Bialková 94",
+                "(d.Ľ.Semanová)"
+              ]
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-12",
+          "feast": "Sv.hieromuč. Jozafát",
+          "events": [
+            {
+              "time": "09:00",
+              "town": "Šambron",
+              "details": [
+                "+ Andrej, Anna, …",
+                "(d.M.Šprochová)"
+              ]
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-13",
+          "feast": "Sv.Ján Zlatoústy /VOĽNICA/",
+          "events": [
+            {
+              "time": "15:45",
+              "town": "Bajerovce",
+              "details": [
+                "+ Anna Sekeráková 121",
+                "(z pohrebu)"
+              ]
+            },
+            {
+              "time": "17:30",
+              "town": "Šambron",
+              "details": [
+                "* obyvat. Šambrona /slov./",
+                "(r.bohuznama)"
+              ]
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-14",
+          "feast": "Sv.ap.Filip",
+          "events": [
+            {
+              "time": "09:00",
+              "town": "Šambron",
+              "details": [
+                "+ Mária Petrusová 90",
+                "(d.M.Mindeková 58)"
+              ]
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-15",
+          "feast": "XXV.po 50-ici ZAČIATOK FILIPOVKY",
+          "events": [
+            {
+              "time": "08:00",
+              "town": "Hromoš",
+              "details": [
+                "* Marián, Róbert s rod.",
+                "(r.Knapikova)"
+              ]
+            },
+            {
+              "time": "09:15",
+              "town": "Bajerovce",
+              "details": [
+                "* Ján, Mária, …",
+                "(r.Sekerákova 5)"
+              ]
+            },
+            {
+              "time": "10:30",
+              "town": "Šambron",
+              "details": [
+                "* veriaci farnosti /slov./"
+              ]
+            }
+          ],
+          "notes": []
+        }
+      ]
+    },
+    {
       "start": "2026-11-02",
       "end": "2026-11-08",
       "source": "https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb/-/blogs/liturgicky-pori-461",
