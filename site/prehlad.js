@@ -53,7 +53,11 @@ function eventList(events, detailed = false) {
       summary.append(place);
       if (event.details?.length) {
         const details = element("ul", "", "event-details");
-        for (const note of event.details) details.append(element("li", note));
+        for (const note of event.details) {
+          const kind = /^\(\s*[rd]\s*\./i.test(note) ? "event-donor"
+            : /^[+*]/.test(note) ? "event-intention" : "event-note";
+          details.append(element("li", note, kind));
+        }
         summary.append(details);
       }
       item.append(summary);

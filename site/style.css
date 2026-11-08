@@ -96,7 +96,7 @@ select { width: 100%; min-width: 0; min-height: 2.75rem; padding: .45rem .55rem;
 .day-link[aria-current="date"] span { color: var(--dark-muted); }
 .schedule > .notice, .schedule-note { margin-top: .7rem; }
 .schedule-note { color: var(--muted); font-size: .88rem; }
-.day { display: grid; grid-template-columns: minmax(12rem, .8fr) minmax(0, 1.2fr); gap: .5rem 1.5rem; padding: .9rem 1rem; margin-top: .4rem; border: 1px solid var(--line); border-radius: .58rem; background: var(--paper); scroll-margin-top: .75rem; }
+.day { display: grid; grid-template-columns: minmax(11rem, .65fr) minmax(0, 2fr); gap: .5rem 1.5rem; padding: .9rem 1rem; margin-top: .4rem; border: 1px solid var(--line); border-radius: .58rem; background: var(--paper); scroll-margin-top: .75rem; }
 .day.current { border-color: #a9c0ae; background: #edf4eb; }
 .day:target { border-color: var(--accent); box-shadow: inset .21rem 0 var(--accent); }
 .day h3 { font-size: 1.02rem; font-weight: 760; line-height: 1.4; }
@@ -112,11 +112,20 @@ time { display: inline-block; flex: none; min-width: 3.05rem; color: var(--accen
 .event-label { color: var(--muted); font-size: .77rem; line-height: 1.35; }
 .quick .event-label { color: var(--dark-muted); }
 .events-detailed > li { display: grid; grid-template-columns: 3.3rem minmax(0, 1fr); gap: .1rem .55rem; align-items: start; }
-.events-detailed > li + li { margin-top: .45rem; }
-.event-summary > span { font-weight: 670; }
+.events-detailed > li + li { margin-top: .65rem; padding-top: .65rem; border-top: 1px solid var(--line); }
+.event-summary { display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: .25rem .75rem; }
+.event-summary > span { font-weight: 670; font-size: .9rem; }
 .event-details { list-style: none; padding: 0; color: var(--muted); font-size: .84rem; overflow-wrap: anywhere; }
-.event-details li { display: block; }
-.event-details li + li { margin-top: .08rem; }
+.event-details li { display: inline; line-height: 1.65; }
+.event-details li + li { margin: 0 0 0 .45rem; }
+.event-details .event-intention { color: var(--ink); }
+.event-details .event-donor { font-size: .78rem; }
+.event-details .event-note { color: var(--accent); font-size: .78rem; font-weight: 650; }
+.event-details li + .event-note::before { content: "· "; }
+@media (max-width: 64rem) {
+  .event-summary { display: block; }
+}
+
 .source-link { display: inline-block; margin-top: .7rem; font-size: .88rem; font-weight: 700; }
 footer { border-top: 1px solid var(--line); color: var(--muted); background: #edf1eb; }
 .footer-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 3rem; align-items: start; padding-block: 1.65rem 2.2rem; font-size: .88rem; }
