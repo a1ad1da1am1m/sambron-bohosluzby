@@ -7,24 +7,24 @@
   <meta name="description" content="Dnešné časy a aktuálny liturgický poriadok farnosti Šambron pre Šambron, Bajerovce a Hromoš.">
   <title>Poriadok bohoslužieb | Farnosť Šambron</title>
   <link rel="icon" href="kriz.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="style.css?v=7">
   <script src="prehlad.js?v=5" defer></script>
 </head>
 <body>
   <a class="skip" href="#rozpis">Preskočiť na rozpis</a>
   <header class="hero">
-    <div class="wrap">
-      <nav class="masthead" aria-label="Hlavná navigácia">
-        <a class="brand" href="./">
-          <img src="kriz.svg" alt="" width="42" height="42">
-          <span>Farnosť Šambron<small>Gréckokatolícka cirkev</small></span>
-        </a>
-        <div class="nav-links">
-          <a class="about-link" href="#o-prehlade">O prehľade</a>
-          <a class="nav-schedule" href="#rozpis">Rozpis <span aria-hidden="true">↓</span></a>
-        </div>
-      </nav>
-      <div class="hero-banner">
+    <div class="wrap hero-shell">
+      <div class="hero-feature">
+        <nav class="masthead" aria-label="Hlavná navigácia">
+          <a class="brand" href="./">
+            <img src="kriz.svg" alt="" width="42" height="42">
+            <span>Farnosť Šambron<small>Gréckokatolícka cirkev</small></span>
+          </a>
+          <div class="nav-links">
+            <a class="about-link" href="#o-prehlade">O prehľade</a>
+            <a class="nav-schedule" href="#rozpis">Rozpis <span aria-hidden="true">↓</span></a>
+          </div>
+        </nav>
         <div class="hero-intro">
           <p class="eyebrow"><span aria-hidden="true"></span>Liturgický kalendár</p>
           <h1>Poriadok<br>bohoslužieb</h1>
@@ -33,20 +33,20 @@
         </div>
       </div>
       <div class="quick" aria-live="polite">
-            <section class="quick-today" id="dnes" aria-labelledby="today-title">
-              <div class="quick-heading">
-                <h2 id="today-title"><span class="status-dot" aria-hidden="true"></span>Dnes</h2>
-                <p id="today-date"></p>
-              </div>
-              <div id="today"><p class="detail">Načítavam poriadok…</p></div>
-            </section>
-            <section class="quick-next" aria-labelledby="next-title">
-              <div class="quick-heading">
-                <h2 id="next-title">Najbližší termín</h2>
-                <p id="next-date" hidden></p>
-              </div>
-              <div id="next"><p class="detail">Načítavam poriadok…</p></div>
-            </section>
+        <section class="quick-today" id="dnes" aria-labelledby="today-title">
+          <div class="quick-heading">
+            <h2 id="today-title"><span class="status-dot" aria-hidden="true"></span>Dnes</h2>
+            <p id="today-date"></p>
+          </div>
+          <div id="today"><p class="detail">Načítavam poriadok…</p></div>
+        </section>
+        <section class="quick-next" aria-labelledby="next-title">
+          <div class="quick-heading">
+            <h2 id="next-title">Najbližší termín</h2>
+            <p id="next-date" hidden></p>
+          </div>
+          <div id="next"><p class="detail">Načítavam poriadok…</p></div>
+        </section>
       </div>
     </div>
   </header>
