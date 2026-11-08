@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Časy bohoslužieb gréckokatolíckej farnosti Šambron podľa obce a dňa.">
+  <title>Poriadok bohoslužieb | Farnosť Šambron</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="prehlad.js" defer></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Gréckokatolícka farnosť Šambron</p>
+      <h1>Poriadok bohoslužieb</h1>
+      <p>Šambron, Bajerovce a Hromoš</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <noscript><p>Prehľad vyžaduje povolený JavaScript. Otvorte pôvodný farský rozpis cez odkaz nižšie.</p></noscript>
+    <div class="summary" aria-live="polite">
+      <section>
+        <h2>Dnes <span id="today-date"></span></h2>
+        <div id="today">Načítavam poriadok…</div>
+      </section>
+      <section>
+        <h2>Najbližší termín</h2>
+        <div id="next">Načítavam poriadok…</div>
+      </section>
+    </div>
+    <section aria-labelledby="schedule-title">
+      <div class="toolbar">
+        <h2 id="schedule-title">Rozpis</h2>
+        <label>Obec
+          <select id="town">
+            <option value="">Všetky obce</option>
+            <option>Šambron</option>
+            <option>Bajerovce</option>
+            <option>Hromoš</option>
+          </select>
+        </label>
+        <label>Obdobie
+          <select id="period">
+            <option value="">Aktuálny týždeň</option>
+          </select>
+        </label>
+      </div>
+      <div id="schedule" aria-live="polite"></div>
+    </section>
+  </main>
+  <footer class="wrap">
+    <p>Automaticky spracovaný prehľad. Úmysly a úplné oznamy nájdete vo farskom origináli.</p>
+    <a href="https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb">Všetky poriadky na farskej stránke</a>
+  </footer>
+</body>
+</html>

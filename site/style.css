@@ -1,0 +1,38 @@
+:root {
+  color-scheme: light;
+  --ink: #222b26;
+  --muted: #495b51;
+  --accent: #235b43;
+  --rule: #dbe4db;
+  font: 1rem/1.5 system-ui, sans-serif;
+  background: #f4f6f1;
+  color: var(--ink);
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+.wrap { width: min(62rem, calc(100% - 2rem)); margin-inline: auto; }
+.hero { background: #183b2d; color: #fff; padding-block: 2.65rem 2.45rem; }
+.eyebrow { font-size: .9rem; font-weight: 700; color: #dcebbd; letter-spacing: .035em; }
+h1 { font-size: clamp(2rem, 6vw, 3.35rem); line-height: 1.1; margin: .4rem 0; }
+h2 { font-size: 1.24rem; margin: 0 0 .45rem; }
+h3 { font-size: 1.08rem; margin: 0; }
+p { margin: .4rem 0; }
+.summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: .75rem; margin-block: 1rem 1.6rem; }
+.summary section, .day, .notice { padding: 1rem; background: #fff; border: 1px solid var(--rule); border-radius: .85rem; }
+.summary span, .detail, .notes { color: var(--muted); font-size: .93rem; }
+.toolbar { display: flex; flex-wrap: wrap; align-items: end; gap: .6rem; margin-bottom: .8rem; }
+.toolbar h2 { margin-right: auto; }
+label { display: grid; gap: .18rem; font-weight: 600; font-size: .88rem; }
+select { max-width: 100%; padding: .55rem .65rem; font: inherit; color: var(--ink); background: #fff; border: 1px solid #83958a; border-radius: .45rem; }
+.day { margin-bottom: .55rem; display: grid; grid-template-columns: minmax(12rem, 1fr) minmax(10rem, 1fr); gap: .35rem 1rem; }
+.day.current { border-color: var(--accent); box-shadow: inset .26rem 0 var(--accent); }
+.events, .notes { list-style: none; margin: 0; padding: 0; }
+.events li + li { margin-top: .25rem; }
+time { color: var(--accent); font-variant-numeric: tabular-nums; font-weight: 750; display: inline-block; min-width: 3.6rem; }
+.notes { margin-top: .45rem; }
+a { color: var(--accent); text-underline-offset: .18em; }
+footer { color: var(--muted); padding-block: 1rem 2rem; }
+@media (max-width: 37rem) {
+  .day { grid-template-columns: 1fr; }
+  .toolbar h2 { width: 100%; }
+}
