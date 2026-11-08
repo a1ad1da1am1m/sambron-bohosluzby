@@ -46,8 +46,10 @@ a:hover { text-decoration-thickness: 2px; }
   content: "";
   position: absolute;
   z-index: -1;
-  inset: 0 0 0 28%;
-  background: linear-gradient(90deg, #142f27, #142f275e 45%, #142f270c), url("chram-sambron.webp") 76% 21% / cover no-repeat;
+  inset: 0 0 0 auto;
+  width: min(57%, 24rem);
+  background: linear-gradient(90deg, #142f274a, #142f2714), url("chram-sambron.webp") center top / cover no-repeat;
+  mask-image: linear-gradient(90deg, transparent, #000 42%);
 }
 .hero-intro { padding: clamp(1.35rem, 4.25vw, 3.45rem); }
 .eyebrow { display: flex; align-items: center; gap: .45rem; color: var(--accent); text-transform: uppercase; font-weight: 800; font-size: .71rem; letter-spacing: .105em; }
@@ -131,7 +133,7 @@ footer p { margin-block: .35rem .65rem; }
 }
 @media (max-width: 41rem) {
   .masthead { min-height: 4rem; }
-  .hero-banner::before { inset-inline-start: 0; background: linear-gradient(90deg, #142f27f5, #142f279c 70%, #142f274d), url("chram-sambron.webp") right 15% / cover no-repeat; }
+  .hero-banner::before { width: 63%; background: linear-gradient(90deg, #142f27bb, #142f2755), url("chram-sambron.webp") center top / cover no-repeat; }
   .quick { grid-template-columns: 1fr; }
   .quick-next { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .15rem .8rem; }
   .quick-next .quick-heading { margin-bottom: 0; }
