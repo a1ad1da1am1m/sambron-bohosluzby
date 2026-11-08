@@ -74,6 +74,30 @@ class ImportTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Nerozpoznané miesto"):
             importuj.parse_article(source, ARTICLE)
 
+    def test_time_without_town_keeps_its_place_unknown(self):
+        source = article("od 10.08. do 16.08.2026",
+                         "<tr><td>SOBOTA 15.08.</td><td>Sviatok</td><td>H 08.00 B 09.15 Š 10.30<br>13.30</td></tr>")
+        data = importuj.parse_article(source, ARTICLE)
+        self.assertEqual(data["days"][0]["events"][-1], {"time": "13:30", "town": None})
+
+    def test_complete_week_can_correct_mistyped_header(self):
+        rows = [
+            "<tr><td>PONDELOK 27.07.</td><td></td><td>Š 17.30</td></tr>",
+            "<tr><td>UTOROK 28.07.</td><td></td><td>H 15.45</td></tr>",
+            "<tr><td>STREDA 29.07.</td><td></td><td>Š 07.00</td></tr>",
+            "<tr><td>ŠTVRTOK 30.07.</td><td></td><td></td><td>SV.LITURGIA<br>NEBUDE!</td></tr>",
+            "<tr><td>PIATOK 31.07.</td><td></td><td>Š 17.30</td></tr>",
+            "<tr><td>SOBOTA 01.08.</td><td></td><td>Š 07.00</td></tr>",
+            "<tr><td>NEDEĽA 02.08.</td><td></td><td>H 08.00</td></tr>",
+        ]
+        source = article("od 20.07. do 26.07.2026", "".join(rows))
+        data = importuj.parse_article(source, ARTICLE)
+        self.assertEqual((data["start"], data["end"]), ("2026-07-27", "2026-08-02"))
+        self.assertIn("dateNote", data)
+        self.assertEqual(data["days"][3]["message"], "Svätá liturgia nebude.")
+        with self.assertRaises(ValueError):
+            importuj.parse_article(article("od 20.07. do 26.07.2026", "".join(rows[:-1])), ARTICLE)
+
     def test_updates_same_url_and_keeps_data_on_source_failure(self):
         listing = page(f'<a href="{ARTICLE}">Liturgický poriadok</a>')
         with tempfile.TemporaryDirectory() as folder:

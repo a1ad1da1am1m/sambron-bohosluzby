@@ -38,6 +38,12 @@ def main():
         rows_without_times = sum(not day["events"] for day in schedule["days"])
         print(f"OK {slug} {start} až {end}: {len(schedule['days'])} dní, {events} termínov, "
               f"{missing} dní bez riadka, {rows_without_times} riadkov bez termínu.")
+        if schedule.get("dateNote"):
+            print("  Rozsah určený podľa dátumov v tabuľke.")
+            totals["opravené rozsahy"] += 1
+        totals["termíny bez obce"] += sum(
+            event["town"] is None for day in schedule["days"] for event in day["events"]
+        )
         for row in page.xpath("//tr"):
             cells = [content(cell) for cell in row.xpath("./td|./th")]
             if len(cells) < 3 or not DAY.match(cells[0]):

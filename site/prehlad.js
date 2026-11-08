@@ -43,19 +43,19 @@ function eventList(events) {
     const item = element("li");
     const time = element("time", event.time);
     time.dateTime = event.time;
-    item.append(time, " " + event.town);
+    item.append(time, element("span", event.town ?? "Miesto v poriadku nie je uvedené"));
     list.append(item);
   }
   return list;
 }
 
 function renderSummary(now, active) {
-  get("today-date").textContent = "· " + format(shortDate, now.date);
+  get("today-date").textContent = format(fullDate, now.date);
   const day = active?.days.find((entry) => entry.date === now.date);
   const events = eventsInTown(day);
   get("today").replaceChildren(events.length ? eventList(events) : element("p",
-    day ? "Pre zvolenú obec dnes nie je uvedený termín."
-      : active ? "Dnešný deň nemá v rozpise samostatný riadok." : "Poriadok na dnešný deň zatiaľ nemáme."
+    day ? day.message ?? "Dnes nie je uvedený termín pre zvolený filter."
+      : active ? "V poriadku na dnešný deň nie je uvedený termín." : "Poriadok na dnešný deň zatiaľ nemáme.", "detail"
   ));
 
   const upcoming = schedules.flatMap((item) => item.days
@@ -65,12 +65,14 @@ function renderSummary(now, active) {
     .sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
 
   const next = get("next");
+  const nextDate = get("next-date");
+  nextDate.hidden = !upcoming.length;
   if (upcoming.length) {
     const first = upcoming[0];
-    next.replaceChildren(element("p", format(fullDate, first.date), "detail"),
-      eventList(upcoming.filter((event) => event.date === first.date && event.time === first.time)));
+    nextDate.textContent = format(fullDate, first.date);
+    next.replaceChildren(eventList(upcoming.filter((event) => event.date === first.date && event.time === first.time)));
   } else {
-    next.replaceChildren(element("p", "Ďalší termín zatiaľ nemáme."));
+    next.replaceChildren(element("p", "V dostupných poriadkoch zatiaľ nie je ďalší termín.", "detail"));
   }
 }
 
@@ -81,19 +83,30 @@ function render() {
   renderSummary(now, active);
   const target = get("schedule");
   target.replaceChildren();
+  get("range").textContent = selected
+    ? format(shortDate, selected.start) + " – " + format(shortDate, selected.end)
+    : "";
   if (!selected) {
     target.append(element("p", "Aktuálny poriadok zatiaľ nemáme. Tu sa zobrazí po načítaní z farskej stránky.", "notice"));
     return;
   }
 
+  if (selected.dateNote) target.append(element("p", selected.dateNote, "schedule-note"));
+  const span = (new Date(selected.end) - new Date(selected.start)) / 86_400_000 + 1;
+  if (selected.days.length < span) {
+    target.append(element("p", "Prehľad uvádza dni, ktoré majú vo farskom rozpise vlastný riadok. Ďalšie oznamy sú v origináli.", "schedule-note"));
+  }
+  let visibleDays = 0;
   for (const day of selected.days) {
     const events = eventsInTown(day);
-    if (townFilter.value && !events.length) continue;
+    if (townFilter.value && !events.length && !day.message) continue;
     const card = element("article", "", day.date === now.date ? "day current" : "day");
     const caption = element("div");
-    caption.append(element("h3", format(fullDate, day.date)), element("p", day.feast, "detail"));
+    caption.append(element("h3", format(fullDate, day.date)));
+    if (day.feast) caption.append(element("p", day.feast, "detail"));
+    if (day.date === now.date) caption.append(element("span", "Dnes", "today-tag"));
     const details = element("div");
-    details.append(events.length ? eventList(events) : element("p", "Čas nie je uvedený.", "detail"));
+    details.append(events.length ? eventList(events) : element("p", day.message ?? "Čas nie je uvedený.", "detail"));
     if (day.notes.length) {
       const notes = element("ul", "", "notes");
       for (const note of day.notes) notes.append(element("li", note));
@@ -101,12 +114,13 @@ function render() {
     }
     card.append(caption, details);
     target.append(card);
+    visibleDays++;
   }
 
-  if (!target.childElementCount) {
+  if (!visibleDays) {
     target.append(element("p", "Vo vybranom poriadku sa nenašiel termín pre túto obec.", "notice"));
   }
-  const source = element("a", "Otvoriť pôvodný farský poriadok");
+  const source = element("a", "Otvoriť pôvodný farský poriadok ↗", "source-link");
   source.href = selected.source;
   target.append(source);
 }

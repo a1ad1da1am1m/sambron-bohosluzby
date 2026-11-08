@@ -28,6 +28,7 @@ PERIOD = re.compile(
 CLOCK = r"(?<!\d)([01]?\d|2[0-3])\s*[.:]\s*([0-5]\d)(?!\d)"
 EVENT = re.compile(r"(?<!\w)([ŠBH])\s*\.?\s*" + CLOCK, re.I)
 NOTE = re.compile(r"=\s*([^=]+?)\s*=")
+NO_LITURGY = re.compile(r"\b(?:sv\.?\s*)?liturgia\s+nebude\b", re.I)
 MAX_BYTES = 3_000_000
 
 
@@ -82,39 +83,80 @@ def period_dates(page):
     return start, end
 
 
+def table_rows(table):
+    for row in table.xpath("./tr|./thead/tr|./tbody/tr|./tfoot/tr"):
+        cells = [content(cell) for cell in row.xpath("./td|./th")]
+        if cells and (day := DAY.match(cells[0])):
+            weekday, number, month = day.groups()
+            yield (weekday.upper(), int(number), int(month)), cells
+
+
+def recover_week(declared_start, tables):
+    """Prijme iba jediný úplný týždeň s dátumami a dňami z jednej tabuľky."""
+    candidates = set()
+    for offset in range(-14, 15):
+        start = declared_start + timedelta(days=offset)
+        if start.weekday() != 0:
+            continue
+        dates = [start + timedelta(days=day) for day in range(7)]
+        expected = {(WEEKDAYS[day.weekday()], day.day, day.month) for day in dates}
+        if any({label for label, _ in rows} == expected for rows in tables):
+            candidates.add(start)
+    return next(iter(candidates)) if len(candidates) == 1 else None
+
+
+def parse_times(value, actual_date):
+    towns = {match.end(): TOWNS[match[1].upper()] for match in EVENT.finditer(value)}
+    events = []
+    previous_end = 0
+    for clock in re.finditer(CLOCK, value):
+        town = towns.get(clock.end())
+        if town is None and not re.fullmatch(r"[\s,;/]*", value[previous_end:clock.start()]):
+            raise ValueError(f"Nerozpoznané miesto termínu pre {actual_date}.")
+        hour, minute = clock.groups()
+        events.append({"time": f"{int(hour):02}:{minute}", "town": town})
+        previous_end = clock.end()
+    return events
+
+
 def parse_article(page, url):
     start, end = period_dates(page)
+    tables = [list(table_rows(table)) for table in page.xpath("//table")]
+    rows = [row for table in tables for row in table]
+    declared_start = start
+    declared_dates = [start + timedelta(days=offset) for offset in range((end - start).days + 1)]
+    date_keys = {(day.day, day.month) for day in declared_dates}
+    if (end - start).days == 6 and not any((number, month) in date_keys for (_, number, month), _ in rows):
+        corrected = recover_week(start, tables)
+        if corrected:
+            start, end = corrected, corrected + timedelta(days=6)
     dates = [start + timedelta(days=offset) for offset in range((end - start).days + 1)]
     by_day = {(item.day, item.month): item for item in dates}
     days = {}
-    for row in page.xpath("//tr"):
-        cells = [content(cell) for cell in row.xpath("./td|./th")]
-        if not cells or not (day := DAY.match(cells[0])):
-            continue
-        weekday, number, month = day.groups()
-        actual_date = by_day.get((int(number), int(month)))
+    for (weekday, number, month), cells in rows:
+        actual_date = by_day.get((number, month))
         if actual_date is None:
             continue
-        if weekday.upper() != WEEKDAYS[actual_date.weekday()] or len(cells) < 3:
+        if weekday != WEEKDAYS[actual_date.weekday()] or len(cells) < 3:
             raise ValueError(f"Nerozpoznaný riadok pre {actual_date}.")
-        matches = list(EVENT.finditer(cells[2]))
-        if len(matches) != len(re.findall(CLOCK, cells[2])):
-            raise ValueError(f"Nerozpoznané miesto termínu pre {actual_date}.")
-        events = [
-            {"time": f"{int(hour):02}:{minute}", "town": TOWNS[town.upper()]}
-            for town, hour, minute in (match.groups() for match in matches)
-        ]
+        events = parse_times(cells[2], actual_date)
         key = actual_date.isoformat()
         entry = days.setdefault(key, {"date": key, "feast": cells[1], "events": [], "notes": []})
         entry["events"].extend(event for event in events if event not in entry["events"])
-        notes = NOTE.findall(" ".join(cells[3:]))
+        comments = " ".join(cells[3:])
+        if not events and NO_LITURGY.search(" ".join((cells[2], comments))):
+            entry["message"] = "Svätá liturgia nebude."
+        notes = NOTE.findall(comments)
         entry["notes"].extend(note.strip() for note in notes if note.strip() not in entry["notes"])
-    if not days or not any(entry["events"] for entry in days.values()):
+    if not any(entry["events"] or entry.get("message") for entry in days.values()):
         raise ValueError("Nenašli sa riadky s časmi a obcami.")
     for entry in days.values():
         entry["events"].sort(key=lambda event: event["time"])
-    return {"start": start.isoformat(), "end": end.isoformat(), "source": url,
-            "days": sorted(days.values(), key=lambda entry: entry["date"])}
+    schedule = {"start": start.isoformat(), "end": end.isoformat(), "source": url,
+                "days": sorted(days.values(), key=lambda entry: entry["date"])}
+    if start != declared_start:
+        schedule["dateNote"] = "Rozsah je určený podľa dátumov pri jednotlivých dňoch farskej tabuľky."
+    return schedule
 
 
 def import_schedules(today):

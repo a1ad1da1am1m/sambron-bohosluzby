@@ -21,3 +21,9 @@ python -m http.server 8000 --directory site
 ```
 
 Prehľad otvor na <http://localhost:8000>. Čerstvý projekt má prázdny JSON a poriadky sa doplnia pri úspešnom importe. Testy používajú malé ukážky štruktúry príspevkov a dajú sa spustiť bez prístupu k farskému webu.
+
+## Kontrola formátov
+
+Workflow **Kontrola formátov farských poriadkov** preverí až 20 najnovších poriadkov zo zoznamu a vypíše spracované termíny aj odchýlky bez zmeny verejného JSON. Spustiť ho možno ručne v záložke Actions alebo príkazom `python scripts/audituj.py`. Pri rozpore s nadpisom sa použijú dátumy z tabuľky, ak tvoria jediný úplný týždeň v okolí uvedených dátumov. Čas bez označenej obce sa zobrazí pri všetkých obciach s vysvetlením.
+
+Fotografia chrámu je od [Jozefa Kotuliča](https://commons.wikimedia.org/wiki/File:Sambron13Slovakia.JPG) pod licenciou [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). Súbor je prevedený do WebP a pri zobrazení orezaný podľa rozmerov stránky.
