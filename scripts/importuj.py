@@ -27,8 +27,9 @@ PERIOD = re.compile(
 )
 CLOCK = r"(?<!\d)([01]?\d|2[0-3])\s*[.:]\s*([0-5]\d)(?!\d)"
 EVENT = re.compile(r"(?<!\w)([ŠBH])\s*\.?\s*" + CLOCK, re.I)
-NOTE = re.compile(r"=\s*([^=]+?)\s*=")
 NO_LITURGY = re.compile(r"\b(?:sv\.?\s*)?liturgia\s+nebude\b", re.I)
+STANDALONE = re.compile(r"^(?:slávnostný\s+)?(?:spoveď|ruženec|večiereň|moleben|zraz)\b", re.I)
+PRIVATE_REFERENCE = re.compile(r"^\(\s*[rd]\s*\.", re.I)
 MAX_BYTES = 3_000_000
 
 
@@ -85,8 +86,8 @@ def period_dates(page):
 
 def table_rows(table):
     for row in table.xpath("./tr|./thead/tr|./tbody/tr|./tfoot/tr"):
-        cells = [content(cell) for cell in row.xpath("./td|./th")]
-        if cells and (day := DAY.match(cells[0])):
+        cells = row.xpath("./td|./th")
+        if cells and (day := DAY.match(content(cells[0]))):
             weekday, number, month = day.groups()
             yield (weekday.upper(), int(number), int(month)), cells
 
@@ -119,6 +120,82 @@ def parse_times(value, actual_date):
     return events
 
 
+def comment_lines(cell):
+    """Zachová riadky zo zdrojovej bunky vrátane zlomov uprostred odseku."""
+    parts = []
+
+    def walk(node):
+        if node.tag == "br":
+            parts.append("\n")
+            return
+        block = node.tag in {"p", "div", "li"}
+        if block:
+            parts.append("\n")
+        parts.append(re.sub(r"\s+", " ", node.text or ""))
+        for child in node:
+            walk(child)
+            parts.append(re.sub(r"\s+", " ", child.tail or ""))
+        if block:
+            parts.append("\n")
+
+    walk(cell)
+    for line in "".join(parts).splitlines():
+        line = " ".join(line.split())
+        if PRIVATE_REFERENCE.match(line):
+            continue
+        line = re.sub(r"\s*\(\s*[rd]\s*\.[^)]*\)", "", line, flags=re.I)
+        if line:
+            yield line
+
+
+def note_text(text):
+    text = text.strip(" =")
+    text = re.sub(r"^panych\.\s*", "Panychída ", text, flags=re.I)
+    if re.fullmatch(r"M\s*Y\s*R\s*O\s*V\s*A\s*N\s*I\s*E", text, re.I):
+        return "Myrovanie"
+    if re.fullmatch(r"ODPUST\s*\.\s*SLÁVNOSŤ", text, re.I):
+        return "Odpustová slávnosť"
+    return text
+
+
+def event_details(cells, events):
+    groups = []
+    pending = []
+    loose = []
+    for cell in cells:
+        for line in comment_lines(cell):
+            text = note_text(line)
+            if not text or NO_LITURGY.fullmatch(text.rstrip("!.")):
+                continue
+            if text == "Odpustová slávnosť":
+                pending.append(text)
+            elif line.startswith(("+", "*")) or STANDALONE.match(text):
+                if line.startswith(("+", "*")):
+                    intention, _, note = text.partition("=")
+                    intention = re.sub(r"\s+\d+(?=\s*(?:/|$))", "", intention.strip())
+                    details = [intention]
+                    if note.strip(" ="):
+                        details.append(note_text(note))
+                    label = None
+                else:
+                    details = [text]
+                    label = text
+                groups.append((label, pending + details))
+                pending = []
+            elif groups:
+                groups[-1][1].append(text)
+            else:
+                loose.append(text)
+    if len(groups) == len(events):
+        for event, (label, details) in zip(events, groups):
+            event["details"] = details
+            if label:
+                event["label"] = label
+    else:
+        loose.extend(detail for _, details in groups for detail in details)
+    return loose + pending
+
+
 def parse_article(page, url):
     start, end = period_dates(page)
     tables = [list(table_rows(table)) for table in page.xpath("//table")]
@@ -139,15 +216,16 @@ def parse_article(page, url):
             continue
         if weekday != WEEKDAYS[actual_date.weekday()] or len(cells) < 3:
             raise ValueError(f"Nerozpoznaný riadok pre {actual_date}.")
-        events = parse_times(cells[2], actual_date)
+        times = content(cells[2])
+        events = parse_times(times, actual_date)
         key = actual_date.isoformat()
-        entry = days.setdefault(key, {"date": key, "feast": cells[1], "events": [], "notes": []})
-        entry["events"].extend(event for event in events if event not in entry["events"])
-        comments = " ".join(cells[3:])
-        if not events and NO_LITURGY.search(" ".join((cells[2], comments))):
+        entry = days.setdefault(key, {"date": key, "feast": content(cells[1]), "events": [], "notes": []})
+        comments = " ".join(content(cell) for cell in cells[3:])
+        if not events and NO_LITURGY.search(" ".join((times, comments))):
             entry["message"] = "Svätá liturgia nebude."
-        notes = NOTE.findall(comments)
-        entry["notes"].extend(note.strip() for note in notes if note.strip() not in entry["notes"])
+        notes = event_details(cells[3:], events)
+        entry["events"].extend(event for event in events if event not in entry["events"])
+        entry["notes"].extend(notes)
     if not any(entry["events"] or entry.get("message") for entry in days.values()):
         raise ValueError("Nenašli sa riadky s časmi a obcami.")
     for entry in days.values():

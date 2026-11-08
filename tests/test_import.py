@@ -55,11 +55,38 @@ class ImportTest(unittest.TestCase):
         data = importuj.parse_article(source, ARTICLE)
         thursday, sunday = data["days"]
         self.assertEqual(thursday["date"], "2026-10-08")
-        self.assertEqual(thursday["events"][0], {"town": "Hromoš", "time": "09:00"})
-        self.assertEqual(thursday["notes"], ["spoveď chorých"])
+        self.assertEqual(thursday["events"][0], {"town": "Hromoš", "time": "09:00", "details": ["+ Úmysel"]})
+        self.assertEqual(thursday["events"][1]["label"], "spoveď chorých")
+        self.assertEqual(thursday["notes"], [])
         self.assertEqual(len(sunday["events"]), 4)
         self.assertEqual(sunday["events"][1], {"town": "Bajerovce", "time": "09:00"})
         self.assertEqual(sunday["notes"], ["slávnostný ruženec"])
+
+    def test_intentions_and_remarks_follow_their_source_times(self):
+        source = article("od 02.11. do 08.11.2026", """
+            <tr><td>PONDELOK 02.11.</td><td>Pamiatka zosnulých</td>
+            <td><p>H 15.45</p><p>Š 17.30</p></td>
+            <td><p>+ naši zosnulí = <em>HRAMOTY</em></p><p>= panych.na cintoríne =</p>
+            <p>+ duše v očistci</p><p>= panych.pri cerkvi =</p></td></tr>
+            <tr><td>STREDA 04.11.</td><td>Sviatok</td><td>B 15.15<br>B 15.45<br>Š 17.30</td>
+            <td><p><i>= spoveď pred odpustom</i><br>+ Ján, Juraj, ...</p><p>(d.A. Príkladová 41)</p>
+            <p>+ Michal 23</p></td></tr>
+            <tr><td>NEDEĽA 08.11.</td><td>Nedeľa</td><td>H 08.00<br>Š 09.00<br>B 10.30</td>
+            <td><p>* Juraj s rod.<br>(r.Príkladova 75)<br>= myrovanie =<br>* veriaci farnosti /csl./
+            <br>= myrovanie =<br><u>ODPUST.SLÁVNOSŤ</u><br>* rod. Príkladova 23</p>
+            <p>= myrovanie + sprievod =</p></td></tr>
+        """)
+        monday, wednesday, sunday = importuj.parse_article(source, ARTICLE)["days"]
+        self.assertEqual([e["details"] for e in monday["events"]], [
+            ["+ naši zosnulí", "HRAMOTY", "Panychída na cintoríne"],
+            ["+ duše v očistci", "Panychída pri cerkvi"],
+        ])
+        self.assertEqual(wednesday["events"][0]["label"], "spoveď pred odpustom")
+        self.assertEqual(wednesday["events"][1]["details"], ["+ Ján, Juraj, ..."])
+        self.assertEqual(wednesday["events"][2]["details"], ["+ Michal"])
+        self.assertEqual(sunday["events"][2]["details"],
+                         ["Odpustová slávnosť", "* rod. Príkladova", "myrovanie + sprievod"])
+        self.assertEqual(sunday["notes"], [])
 
     def test_range_spans_new_year(self):
         source = article("od 28.12. do 03.01.2027",

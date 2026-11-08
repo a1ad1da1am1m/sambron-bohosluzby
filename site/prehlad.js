@@ -40,13 +40,27 @@ function eventsInTown(day) {
   return (day?.events ?? []).filter((event) => !townFilter.value || event.town === townFilter.value);
 }
 
-function eventList(events) {
-  const list = element("ul", "", "events");
+function eventList(events, detailed = false) {
+  const list = element("ul", "", detailed ? "events events-detailed" : "events");
   for (const event of events) {
     const item = element("li");
     const time = element("time", event.time);
     time.dateTime = event.time;
-    item.append(time, element("span", event.town ?? "Miesto v poriadku nie je uvedené"));
+    const place = element("span", event.town ?? "Miesto v poriadku nie je uvedené");
+    item.append(time);
+    if (detailed) {
+      const summary = element("div", "", "event-summary");
+      summary.append(place);
+      if (event.details?.length) {
+        const details = element("ul", "", "event-details");
+        for (const note of event.details) details.append(element("li", note));
+        summary.append(details);
+      }
+      item.append(summary);
+    } else {
+      item.append(place);
+      if (event.label) item.append(element("small", event.label, "event-label"));
+    }
     list.append(item);
   }
   return list;
@@ -115,11 +129,11 @@ function render(now = localClock()) {
     if (day.feast) caption.append(element("p", day.feast, "detail"));
     if (isToday) caption.append(element("span", "Dnes", "today-tag"));
     const details = element("div");
-    details.append(events.length ? eventList(events) : element("p", day.message ?? "Čas nie je uvedený.", "detail"));
+    details.append(events.length ? eventList(events, true) : element("p", day.message ?? "Čas nie je uvedený.", "detail"));
     if (day.notes.length) {
       const notes = element("ul", "", "notes");
       for (const note of day.notes) notes.append(element("li", note));
-      details.append(notes);
+      details.append(element("p", "Poznámky k dňu", "notes-heading"), notes);
     }
     card.append(caption, details);
     target.append(card);

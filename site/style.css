@@ -33,14 +33,30 @@ a:hover { text-decoration-thickness: 2px; }
 .nav-links a { color: var(--ink); font-size: .83rem; font-weight: 680; text-decoration: none; }
 .nav-links a:hover { text-decoration: underline; }
 .nav-schedule span { color: var(--accent); margin-left: .24rem; }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) clamp(16rem, 28vw, 22rem); gap: clamp(1.3rem, 5vw, 4.6rem); align-items: center; padding-block: clamp(1.55rem, 3.6vw, 2.8rem); }
-.hero-intro { margin-bottom: 1.35rem; }
+.hero-banner {
+  isolation: isolate;
+  position: relative;
+  overflow: hidden;
+  margin-top: clamp(.65rem, 2.3vw, 1.75rem);
+  border-radius: 1rem;
+  color: #fffaf0;
+  background: #142f27;
+}
+.hero-banner::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 0 28%;
+  background: linear-gradient(90deg, #142f27, #142f275e 45%, #142f270c), url("chram-sambron.webp") 76% 21% / cover no-repeat;
+}
+.hero-intro { padding: clamp(1.35rem, 4.25vw, 3.45rem); }
 .eyebrow { display: flex; align-items: center; gap: .45rem; color: var(--accent); text-transform: uppercase; font-weight: 800; font-size: .71rem; letter-spacing: .105em; }
+.hero-banner .eyebrow { color: #cee5cf; }
 .eyebrow span { width: 1.3rem; height: 1px; background: currentColor; }
-h1 { margin-top: .55rem; font-size: clamp(2.65rem, 6.5vw, 5rem); font-weight: 800; line-height: .96; letter-spacing: -.075em; }
-.places { margin-top: .88rem; color: var(--muted); font-size: clamp(.88rem, 1.6vw, 1.04rem); }
-.places span { color: var(--accent); margin-inline: .23rem; }
-.quick { overflow: hidden; border: 1px solid #cbd7c9; border-radius: .95rem; background: var(--pale); }
+h1 { margin-top: .55rem; font-size: clamp(2.55rem, 6.5vw, 5rem); font-weight: 800; line-height: .96; letter-spacing: -.075em; }
+.places { margin-top: .88rem; color: #e0ebdf; font-size: clamp(.82rem, 1.6vw, 1.04rem); }
+.places span { color: #acd6b3; margin-inline: .23rem; }
+.quick { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); overflow: hidden; margin-block: .65rem clamp(.9rem, 2.5vw, 1.6rem); border: 1px solid #cbd7c9; border-radius: .85rem; background: var(--pale); }
 .quick section { padding: .82rem 1.02rem .9rem; min-width: 0; }
 .quick .quick-today { background: var(--forest); color: #fff; }
 .quick-heading { display: flex; align-items: baseline; flex-wrap: wrap; gap: .14rem .65rem; margin-bottom: .44rem; }
@@ -54,19 +70,13 @@ h1 { margin-top: .55rem; font-size: clamp(2.65rem, 6.5vw, 5rem); font-weight: 80
 .quick-today .events li + li { margin-top: 0; }
 .quick-today .events time { color: #fff6d9; min-width: 0; font-size: clamp(1.12rem, 2.65vw, 1.66rem); letter-spacing: -.025em; }
 .quick-today .events span { color: #eff7f1; font-size: .8rem; overflow-wrap: anywhere; }
-.quick-next { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .15rem .8rem; }
-.quick-next .quick-heading { margin-bottom: 0; }
+.quick-next .quick-heading { margin-bottom: .35rem; }
 .quick-next .events { display: flex; flex-wrap: wrap; gap: .15rem .65rem; }
 .quick-next .events li { margin-top: 0; gap: .2rem .45rem; font-size: .83rem; }
 .quick-next .events time { min-width: 0; }
-.jump { display: inline-flex; align-items: center; gap: .42rem; min-height: 2.75rem; margin-top: .65rem; color: var(--forest); text-decoration: none; font-size: .83rem; font-weight: 760; }
-.jump:hover { text-decoration: underline; }
-.jump span { width: 1.65rem; height: 1.65rem; display: inline-grid; place-items: center; border: 1px solid #b5c9ba; border-radius: 50%; }
-.church { min-width: 0; border: 1px solid #d3dacf; border-radius: .95rem; overflow: hidden; background: var(--paper); }
-.church img { display: block; width: 100%; height: clamp(19rem, 34vw, 27rem); object-fit: cover; object-position: center top; background: #d7e9e7; }
-.church figcaption { display: grid; gap: .18rem; padding: .73rem .95rem .82rem; }
-.church figcaption span { color: var(--accent); text-transform: uppercase; font-size: .67rem; letter-spacing: .09em; font-weight: 800; }
-.church figcaption strong { font-size: .9rem; line-height: 1.28; }
+.jump { display: inline-flex; align-items: center; gap: .42rem; min-height: 2.45rem; margin-top: .78rem; padding: .25rem .68rem; color: #18362c; background: #f4efd9; border-radius: .36rem; text-decoration: none; font-size: .81rem; font-weight: 760; }
+.jump:hover { background: #fff7dc; }
+.hero-banner :focus-visible { outline-color: #fff3c4; }
 .notice { border: 1px solid var(--line); border-radius: .65rem; padding: .9rem 1rem; background: var(--paper); }
 .detail { color: var(--muted); font-size: .9rem; overflow-wrap: anywhere; }
 .schedule-section { scroll-margin-top: 1rem; margin-block: clamp(1.7rem, 4.5vw, 3.55rem) clamp(2.2rem, 5vw, 4rem); }
@@ -96,6 +106,15 @@ select { width: 100%; min-width: 0; min-height: 2.75rem; padding: .45rem .55rem;
 time { display: inline-block; flex: none; min-width: 3.05rem; color: var(--accent); font-size: .94rem; font-variant-numeric: tabular-nums; font-weight: 780; }
 .notes { margin-top: .4rem; color: var(--muted); font-size: .85rem; }
 .notes li::before { content: "· "; font-weight: bold; }
+.notes-heading { margin-top: .65rem; color: var(--muted); font-size: .76rem; font-weight: 750; }
+.event-label { color: var(--muted); font-size: .77rem; line-height: 1.35; }
+.quick-today .event-label { color: var(--dark-muted); }
+.events-detailed > li { display: grid; grid-template-columns: 3.3rem minmax(0, 1fr); gap: .1rem .55rem; align-items: start; }
+.events-detailed > li + li { margin-top: .45rem; }
+.event-summary > span { font-weight: 670; }
+.event-details { list-style: none; padding: 0; color: var(--muted); font-size: .84rem; overflow-wrap: anywhere; }
+.event-details li { display: block; }
+.event-details li + li { margin-top: .08rem; }
 .source-link { display: inline-block; margin-top: .7rem; font-size: .88rem; font-weight: 700; }
 footer { border-top: 1px solid var(--line); color: var(--muted); background: #edf1eb; }
 .footer-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 3rem; align-items: start; padding-block: 1.65rem 2.2rem; font-size: .88rem; }
@@ -108,17 +127,14 @@ footer p { margin-block: .35rem .65rem; }
 .developer ul { display: flex; flex-wrap: wrap; gap: .3rem .9rem; list-style: none; padding: 0; margin: .6rem 0 0; }
 @media (max-width: 52rem) {
   .wrap { width: calc(100% - 2rem); }
-  .hero-grid { gap: 1.1rem; }
   .days { grid-template-columns: repeat(auto-fit, minmax(4.9rem, 1fr)); }
 }
 @media (max-width: 41rem) {
   .masthead { min-height: 4rem; }
-  .hero-grid { grid-template-columns: 1fr; gap: .85rem; }
-  .hero-intro { margin-bottom: 1.05rem; }
-  .jump { margin-top: .38rem; }
-  .church { display: grid; grid-template-columns: minmax(7.6rem, .75fr) minmax(0, 1.25fr); align-items: center; }
-  .church img { height: 10.75rem; }
-  .church figcaption { padding: .7rem .8rem; }
+  .hero-banner::before { inset-inline-start: 0; background: linear-gradient(90deg, #142f27f5, #142f279c 70%, #142f274d), url("chram-sambron.webp") right 15% / cover no-repeat; }
+  .quick { grid-template-columns: 1fr; }
+  .quick-next { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .15rem .8rem; }
+  .quick-next .quick-heading { margin-bottom: 0; }
   .days { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .25rem; }
   .day-link { padding-inline: .05rem; }
   .day-link strong { font-size: .76rem; }
@@ -129,5 +145,6 @@ footer p { margin-block: .35rem .65rem; }
 @media (max-width: 25rem) {
   .about-link { display: none; }
   .filters { grid-template-columns: 1fr; }
+  .hero-intro { padding-inline: .78rem; }
   .quick section { padding-inline: .76rem; }
 }
