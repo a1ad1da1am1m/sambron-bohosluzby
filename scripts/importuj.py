@@ -54,7 +54,7 @@ def content(element):
     return " ".join(" ".join(element.itertext()).split())
 
 
-def article_links(page):
+def article_links(page, schedules_only=True):
     candidates = {}
     for anchor in page.xpath("//a[@href]"):
         link = urlsplit(urljoin(SOURCE, anchor.get("href")))
@@ -64,7 +64,7 @@ def article_links(page):
         if PATH not in path:
             continue
         slug = path.partition(PATH)[2]
-        if re.fullmatch(r"liturgicky-[a-z0-9-]+|\d+", slug):
+        if re.fullmatch(r"liturgicky-[a-z0-9-]+|\d+" if schedules_only else r"[\w-]+", slug) and slug not in {"rss", "edit", "new"}:
             candidates[slug] = SOURCE + "/-/blogs/" + slug
     return list(candidates.values())
 
@@ -234,9 +234,53 @@ def parse_article(page, url):
     return schedule
 
 
+def class_nodes(page, name):
+    return page.xpath('//*[contains(concat(" ", normalize-space(@class), " "), $name)]', name=" " + name + " ")
+
+
+def article_body(page):
+    bodies = class_nodes(page, "entry-body")
+    return bodies[0] if bodies else page
+
+
+def is_schedule(page, url):
+    body = article_body(page)
+    title = page.xpath("string(//title)")
+    return bool(PERIOD.search(content(body)) or body.xpath(".//table") and
+                any(DAY.match(content(cells[0])) for row in body.xpath(".//tr")
+                    if (cells := row.xpath("./td|./th"))) or "liturgick" in title.lower() or "liturgicky-" in url.rsplit("/", 1)[-1])
+
+
+def parse_announcement(page, url):
+    bodies = class_nodes(page, "entry-body")
+    if not bodies:
+        raise ValueError("Nenašlo sa telo farského oznamu.")
+    body = bodies[0]
+    title = page.xpath("string(//title)").split(" - ")[0].split(" | ")[0].strip() or "Farský oznam"
+    paragraphs = list(comment_lines(body))
+    images, links = [], []
+    for tag, target, attribute in [("img", images, "src"), ("a", links, "href")]:
+        for node in body.xpath(".//" + tag + "[@" + attribute + "]"):
+            href = urljoin(url, node.get(attribute))
+            if urlsplit(href).scheme not in {"http", "https"}:
+                continue
+            entry = {"url": href, "alt" if tag == "img" else "title": node.get("alt", "") if tag == "img" else content(node)}
+            if entry not in target:
+                target.append(entry)
+    if not paragraphs and not images and not links:
+        raise ValueError("Farský oznam je prázdny.")
+    dates = class_nodes(page, "entry-date")
+    published = None
+    if dates and (match := re.search(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", content(dates[0]))):
+        day, month, year = map(int, match.groups())
+        published = date(year, month, day).isoformat()
+    return {"title": title, "source": url, "published": published,
+            "paragraphs": paragraphs, "images": images, "links": links}
+
+
 def import_schedules(today):
     page = fetch(SOURCE)
-    links = article_links(page)
+    links = article_links(page, schedules_only=False)
     if not links:
         anchors = page.xpath("//a[@href]")
         print(
@@ -250,12 +294,21 @@ def import_schedules(today):
         raise ValueError("Na farskej stránke sa nenašli odkazy na poriadky.")
 
     cutoff = (today - timedelta(days=28)).isoformat()
-    previous = json.loads(OUTPUT.read_text(encoding="utf-8"))["schedules"]
+    previous_data = json.loads(OUTPUT.read_text(encoding="utf-8"))
+    previous = previous_data["schedules"]
+    notices = {item["source"]: item for item in previous_data.get("announcements", [])}
     by_url = {item["source"]: item for item in previous if item["end"] >= cutoff}
     valid = 0
-    for url in links[:8]:
+    for url in links[:30]:
         try:
-            schedule = parse_article(fetch(url), url)
+            article = fetch(url)
+            if not is_schedule(article, url):
+                notices[url] = parse_announcement(article, url)
+                by_url.pop(url, None)
+                valid += 1
+                continue
+            schedule = parse_article(article, url)
+            notices.pop(url, None)
         except (ValueError, URLError, TimeoutError, html.etree.LxmlError) as error:
             print(f"{url}: {error}", file=sys.stderr)
             continue
@@ -271,12 +324,13 @@ def import_schedules(today):
         print("Zdroj zatiaľ neobsahuje platný aktuálny ani budúci poriadok.", file=sys.stderr)
 
     schedules = sorted(by_url.values(), key=lambda item: (item["start"], item["source"]), reverse=True)
-    result = json.dumps({"schedules": schedules}, ensure_ascii=False, indent=2) + "\n"
+    announcements = sorted(notices.values(), key=lambda item: (item.get("published") or "", item["source"]), reverse=True)[:12]
+    result = json.dumps({"schedules": schedules, "announcements": announcements}, ensure_ascii=False, indent=2) + "\n"
     if result != OUTPUT.read_text(encoding="utf-8"):
         temp = OUTPUT.with_suffix(".tmp")
         temp.write_text(result, encoding="utf-8")
         temp.replace(OUTPUT)
-    print(f"Spracovaných príspevkov: {valid}. Uložených poriadkov: {len(schedules)}.")
+    print(f"Spracovaných príspevkov: {valid}. Uložených poriadkov: {len(schedules)}. Oznamov: {len(announcements)}.")
 
 
 if __name__ == "__main__":

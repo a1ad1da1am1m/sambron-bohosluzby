@@ -5,20 +5,11 @@ from datetime import date
 import re
 import sys
 
-from importuj import CLOCK, DAY, SOURCE, article_links, content, fetch, parse_article
+from importuj import CLOCK, DAY, SOURCE, article_links, content, fetch, parse_article, is_schedule, parse_announcement
 
 
 def main():
-    listing = fetch(SOURCE)
-    for a in listing.xpath('//a[@href]'):
-        href = a.get('href', '')
-        if '/-/blogs/' in href and 'liturgicky-' not in href:
-            print('OTHER LINK', href, content(a)[:120])
-    notice = fetch(SOURCE + '/-/blogs/dolezity-oznam')
-    for node in notice.xpath('//*[@class]'):
-        if any(word in node.get('class', '') for word in ['entry-', 'publish', 'asset-']):
-            print('NOTICE NODE', node.tag, node.get('class'), content(node)[:5000])
-    urls = article_links(listing)[:20]
+    urls = article_links(fetch(SOURCE), schedules_only=False)[:30]
     if not urls:
         sys.exit("Na farskej stránke sa nenašli odkazy na poriadky.")
     totals = Counter()
@@ -31,6 +22,12 @@ def main():
             totals["chyby"] += 1
             continue
         try:
+            if not is_schedule(page, url):
+                notice = parse_announcement(page, url)
+                print(f"OZNAM {slug}: {notice['title']}, {notice['published']}, "
+                      f"{len(notice['paragraphs'])} odsekov, {len(notice['images'])} obrázkov.")
+                totals["oznamy"] += 1
+                continue
             schedule = parse_article(page, url)
         except ValueError as error:
             print(f"CHYBA {slug}: {error}")

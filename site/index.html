@@ -7,8 +7,8 @@
   <meta name="description" content="Dnešné časy a aktuálny liturgický poriadok farnosti Šambron pre Šambron, Bajerovce a Hromoš.">
   <title>Poriadok bohoslužieb | Farnosť Šambron</title>
   <link rel="icon" href="kriz.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=10">
-  <script src="prehlad.js?v=5" defer></script>
+  <link rel="stylesheet" href="style.css?v=11">
+  <script src="prehlad.js?v=6" defer></script>
 </head>
 <body>
   <a class="skip" href="#rozpis">Preskočiť na rozpis</a>
@@ -77,6 +77,16 @@
       </div>
       <nav id="days" class="days" aria-label="Prejsť na deň rozpisu" hidden></nav>
       <div id="schedule" class="schedule" aria-live="polite"></div>
+    </section>
+    <section class="announcements-section" id="oznamy" aria-labelledby="announcements-title" hidden>
+      <div class="toolbar">
+        <div class="schedule-heading">
+          <p class="eyebrow"><span aria-hidden="true"></span>Zo života farnosti</p>
+          <h2 id="announcements-title">Farské oznamy</h2>
+          <p class="detail">Samostatné príspevky z farského webu. Dátum zverejnenia neurčuje ich platnosť.</p>
+        </div>
+      </div>
+      <div id="announcements"></div>
     </section>
   </main>
   <footer id="o-prehlade">

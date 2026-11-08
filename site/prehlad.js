@@ -155,11 +155,62 @@ function render(now = localClock()) {
   target.append(source);
 }
 
+function safeLink(value) {
+  try {
+    const url = new URL(value);
+    return ["http:", "https:"].includes(url.protocol) ? url.href : null;
+  } catch { return null; }
+}
+
+function renderAnnouncements(items) {
+  const target = get("announcements");
+  target.replaceChildren();
+  get("oznamy").hidden = !items.length;
+  const cutoff = new Date(localClock().date + "T12:00:00Z");
+  cutoff.setUTCDate(cutoff.getUTCDate() - 45);
+  const cutoffDate = cutoff.toISOString().slice(0, 10);
+  for (const item of items) {
+    const card = element("details", "", "announcement");
+    const summary = element("summary", item.title);
+    const dated = /^\d{4}-\d{2}-\d{2}$/.test(item.published ?? "");
+    const older = dated && item.published < cutoffDate;
+    summary.append(element("span", dated
+      ? "Zverejnené " + format(shortDate, item.published) + (older ? " · Starší oznam" : "")
+      : "Dátum zverejnenia nie je uvedený", "announcement-meta"));
+    card.open = dated && !older;
+    const body = element("div", "", "announcement-body");
+    for (const text of item.paragraphs ?? []) body.append(element("p", text));
+    const media = element("div", "", "announcement-media");
+    for (const image of item.images ?? []) {
+      const url = safeLink(image.url);
+      if (!url) continue;
+      const link = element("a"); link.href = url;
+      const img = document.createElement("img");
+      img.src = url; img.alt = image.alt || "Obrázok k oznamu";
+      img.loading = "lazy";
+      link.append(img); media.append(link);
+    }
+    for (const attachment of item.links ?? []) {
+      const url = safeLink(attachment.url);
+      if (!url) continue;
+      const link = element("a", attachment.title || "Otvoriť prílohu");
+      link.href = url; media.append(link);
+    }
+    body.append(media);
+    const source = element("a", "Otvoriť pôvodný oznam ↗", "source-link");
+    const url = safeLink(item.source);
+    if (url) { source.href = url; body.append(source); }
+    card.append(summary, body); target.append(card);
+  }
+}
+
 async function init() {
   try {
     const response = await fetch("./poriadky.json");
     if (!response.ok) throw new Error(String(response.status));
-    ({ schedules } = await response.json());
+    const data = await response.json();
+    schedules = data.schedules ?? [];
+    renderAnnouncements(data.announcements ?? []);
     for (const item of schedules) {
       const label = format(shortDate, item.start) + " – " + format(shortDate, item.end);
       periodFilter.add(new Option(label, item.source));
