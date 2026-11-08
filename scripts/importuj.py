@@ -36,7 +36,9 @@ def fetch(url):
         if len(body) > MAX_BYTES:
             raise ValueError("HTML prekročilo povolenú veľkosť.")
         charset = response.headers.get_content_charset()
-        return html.fromstring(body, parser=html.HTMLParser(encoding=charset or "utf-8"))
+        return html.fromstring(
+            body, parser=html.HTMLParser(encoding=charset or "utf-8"), base_url=response.url
+        )
 
 
 def content(element):
@@ -109,8 +111,18 @@ def parse_article(page, url):
 
 
 def import_schedules(today):
-    links = article_links(fetch(SOURCE))
+    page = fetch(SOURCE)
+    links = article_links(page)
     if not links:
+        anchors = page.xpath("//a[@href]")
+        print(
+            f"Zdroj: {page.base_url or SOURCE}. Titulok: {page.xpath('string(//title)').strip()[:120]}. "
+            f"Počet odkazov: {len(anchors)}.",
+            file=sys.stderr,
+        )
+        for anchor in [item for item in anchors if re.search(r"blog|poriad|sambron", item.get("href"), re.I)][:12]:
+            href = urlsplit(anchor.get("href"))
+            print(f"Odkaz: {href.path[:200]} — {content(anchor)[:80]}", file=sys.stderr)
         raise ValueError("Na farskej stránke sa nenašli odkazy na poriadky.")
 
     cutoff = (today - timedelta(days=28)).isoformat()

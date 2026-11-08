@@ -1,6 +1,14 @@
 name: Aktualizácia liturgických poriadkov
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/poriadky.yml'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'requirements.txt'
+      - 'site/**'
   schedule:
     - cron: '17 */2 * * *'
   workflow_dispatch:
