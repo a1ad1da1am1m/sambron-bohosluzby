@@ -1,3 +1,550 @@
 {
-  "schedules": []
+  "schedules": [
+    {
+      "start": "2026-11-02",
+      "end": "2026-11-08",
+      "source": "https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb/-/blogs/liturgicky-pori-461",
+      "days": [
+        {
+          "date": "2026-11-02",
+          "feast": "Pamiatka zosnulých",
+          "events": [
+            {
+              "time": "15:45",
+              "town": "Hromoš"
+            },
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": [
+            "HRAMOTY",
+            "+ duše v očistci"
+          ]
+        },
+        {
+          "date": "2026-11-03",
+          "feast": "Sv.muč. Akepsimas a ost.",
+          "events": [
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-04",
+          "feast": "Prep.Joanikios Sv.muč.Nikander a Hermaios",
+          "events": [
+            {
+              "time": "15:15",
+              "town": "Bajerovce"
+            },
+            {
+              "time": "15:45",
+              "town": "Bajerovce"
+            },
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-05",
+          "feast": "Sv.muč.Galaktion a Epistéma",
+          "events": [
+            {
+              "time": "09:00",
+              "town": "Hromoš"
+            },
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-06",
+          "feast": "Sv.Pavol vyznávač",
+          "events": [
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-07",
+          "feast": "Sv.muč.z Melitíny Prep.Lazár",
+          "events": [
+            {
+              "time": "09:00",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-08",
+          "feast": "XXIV.po 50-ici Zhromaždenie k Sv.Michalovi Archanjelovi",
+          "events": [
+            {
+              "time": "08:00",
+              "town": "Hromoš"
+            },
+            {
+              "time": "09:00",
+              "town": "Šambron"
+            },
+            {
+              "time": "10:30",
+              "town": "Bajerovce"
+            }
+          ],
+          "notes": [
+            "myrovanie",
+            "myrovanie + sprievod"
+          ]
+        }
+      ]
+    },
+    {
+      "start": "2026-10-26",
+      "end": "2026-11-01",
+      "source": "https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb/-/blogs/liturgicky-pori-460",
+      "days": [
+        {
+          "date": "2026-10-26",
+          "feast": "Sv.veľkomuč. Demeter Myromvonný",
+          "events": [
+            {
+              "time": "15:45",
+              "town": "Bajerovce"
+            },
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-27",
+          "feast": "Sv.muč. Nestor",
+          "events": [
+            {
+              "time": "15:45",
+              "town": "Hromoš"
+            },
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-28",
+          "feast": "Sv.muč.Terencius a Neonilla",
+          "events": [
+            {
+              "time": "08:00",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-29",
+          "feast": "Sv.muč.Anastázia",
+          "events": [
+            {
+              "time": "08:00",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-30",
+          "feast": "Sv.muč.Zenóbios a Zenóbia",
+          "events": [
+            {
+              "time": "08:00",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-31",
+          "feast": "Blah.muč.Teodor Romža",
+          "events": [
+            {
+              "time": "08:30",
+              "town": "Šambron"
+            },
+            {
+              "time": "10:15",
+              "town": "Bajerovce"
+            },
+            {
+              "time": "15:30",
+              "town": "Bajerovce"
+            },
+            {
+              "time": "16:00",
+              "town": "Šambron"
+            }
+          ],
+          "notes": [
+            "HRAMOTY + naší zosnulí",
+            "panych.na cintoríne"
+          ]
+        },
+        {
+          "date": "2026-11-01",
+          "feast": "XXIII.po 50-ici",
+          "events": [
+            {
+              "time": "08:00",
+              "town": "Šambron"
+            },
+            {
+              "time": "09:15",
+              "town": "Bajerovce"
+            },
+            {
+              "time": "10:30",
+              "town": "Hromoš"
+            }
+          ],
+          "notes": []
+        }
+      ]
+    },
+    {
+      "start": "2026-10-19",
+      "end": "2026-10-25",
+      "source": "https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb/-/blogs/liturgicky-pori-459",
+      "days": [
+        {
+          "date": "2026-10-19",
+          "feast": "Sv.prorok Joel a ost.",
+          "events": [
+            {
+              "time": "07:00",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-20",
+          "feast": "Sv.veľkomuč. Artemios",
+          "events": [
+            {
+              "time": "07:00",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-21",
+          "feast": "Prep.o.Hilarion Veľký",
+          "events": [
+            {
+              "time": "15:45",
+              "town": "Hromoš"
+            },
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-22",
+          "feast": "Sv.Aberkios",
+          "events": [
+            {
+              "time": "09:00",
+              "town": "Šambron"
+            },
+            {
+              "time": "17:00",
+              "town": "Bajerovce"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-23",
+          "feast": "Sv.ap.Jakub, Pánov príbuzný",
+          "events": [
+            {
+              "time": "15:45",
+              "town": "Bajerovce"
+            },
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-24",
+          "feast": "Sv.muč.Aretas a ost.",
+          "events": [
+            {
+              "time": "09:00",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-25",
+          "feast": "XXII.po 50-ici KRISTA KRÁĽA NAŠA ZBIERKA",
+          "events": [
+            {
+              "time": "08:00",
+              "town": "Hromoš"
+            },
+            {
+              "time": "09:15",
+              "town": "Bajerovce"
+            },
+            {
+              "time": "10:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        }
+      ]
+    },
+    {
+      "start": "2026-10-12",
+      "end": "2026-10-18",
+      "source": "https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb/-/blogs/liturgicky-pori-458",
+      "days": [
+        {
+          "date": "2026-10-12",
+          "feast": "Sv.muč.Probus a ost.",
+          "events": [
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-13",
+          "feast": "Sv.muč.Karpos a ost.",
+          "events": [
+            {
+              "time": "07:00",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-14",
+          "feast": "Prep.matka Paraskeva",
+          "events": [
+            {
+              "time": "15:45",
+              "town": "Hromoš"
+            },
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-15",
+          "feast": "Prep.o.Eutymios a Lukián",
+          "events": [
+            {
+              "time": "09:00",
+              "town": "Bajerovce"
+            },
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-16",
+          "feast": "Sv.muč.Longín Stotník",
+          "events": [
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-17",
+          "feast": "Sv.prorok Ozeáš a prep.Andrej",
+          "events": [
+            {
+              "time": "09:00",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-18",
+          "feast": "XXI.po 50-ici /Sv.ap.a evanj.Lukáš/ ZBIERKA: MISIE + SEMINÁR",
+          "events": [
+            {
+              "time": "07:45",
+              "town": "Bajerovce"
+            },
+            {
+              "time": "09:00",
+              "town": "Šambron"
+            },
+            {
+              "time": "10:30",
+              "town": "Hromoš"
+            }
+          ],
+          "notes": [
+            "myrovanie a sprievod"
+          ]
+        }
+      ]
+    },
+    {
+      "start": "2026-10-05",
+      "end": "2026-10-11",
+      "source": "https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb/-/blogs/liturgicky-pori-457",
+      "days": [
+        {
+          "date": "2026-10-05",
+          "feast": "Sv.muč.Charitína",
+          "events": [
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-06",
+          "feast": "Sv.ap.Tomáš",
+          "events": [
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-07",
+          "feast": "Sv.muč.Sergej a Bakhus",
+          "events": [
+            {
+              "time": "15:45",
+              "town": "Bajerovce"
+            },
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-08",
+          "feast": "Prep.matka Pelágia",
+          "events": [
+            {
+              "time": "09:00",
+              "town": "Hromoš"
+            },
+            {
+              "time": "11:00",
+              "town": "Šambron"
+            },
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-09",
+          "feast": "Sv.ap.Jakub Alfejov",
+          "events": [
+            {
+              "time": "17:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-10",
+          "feast": "Sv.muč.Eulampios a Eulampia",
+          "events": [
+            {
+              "time": "09:00",
+              "town": "Šambron"
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-10-11",
+          "feast": "XX.po 50-ici",
+          "events": [
+            {
+              "time": "07:45",
+              "town": "Hromoš"
+            },
+            {
+              "time": "09:00",
+              "town": "Bajerovce"
+            },
+            {
+              "time": "10:00",
+              "town": "Šambron"
+            },
+            {
+              "time": "10:30",
+              "town": "Šambron"
+            }
+          ],
+          "notes": [
+            "slávnostný ruženec",
+            "myrovanie a sprievod"
+          ]
+        }
+      ]
+    }
+  ]
 }
