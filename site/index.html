@@ -3,60 +3,54 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#163b32">
-  <meta name="description" content="Aktuálny liturgický poriadok gréckokatolíckej farnosti Šambron pre Šambron, Bajerovce a Hromoš.">
+  <meta name="theme-color" content="#0d1a22">
+  <meta name="description" content="Dnešné časy a aktuálny liturgický poriadok farnosti Šambron pre Šambron, Bajerovce a Hromoš.">
   <title>Poriadok bohoslužieb | Farnosť Šambron</title>
-  <link rel="stylesheet" href="style.css?v=2">
-  <script src="prehlad.js?v=2" defer></script>
+  <link rel="stylesheet" href="style.css?v=3">
+  <script src="prehlad.js?v=3" defer></script>
 </head>
 <body>
   <a class="skip" href="#rozpis">Preskočiť na rozpis</a>
   <header class="hero">
     <div class="wrap">
-      <div class="masthead">
+      <nav class="masthead" aria-label="Hlavná navigácia">
         <a class="brand" href="./">
-          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 3v13M10 8h12M12 5h8m-8 7 8 2M5 28V20l11-6 11 6v8H5Zm8 0v-5a3 3 0 0 1 6 0v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span>Gréckokatolícka farnosť<strong>Šambron</strong></span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v9M8 6h8m-7 3 6 1.5M4 21v-6l8-5 8 5v6H4Zm6 0v-4h4v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Farnosť Šambron</span>
         </a>
         <a class="mast-link" href="#o-prehlade">O prehľade</a>
+      </nav>
+      <div class="hero-intro">
+        <p class="eyebrow">Gréckokatolícka farnosť</p>
+        <h1>Poriadok<br>bohoslužieb</h1>
+        <p class="places">Šambron <span>·</span> Bajerovce <span>·</span> Hromoš</p>
       </div>
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Farský týždenný prehľad</p>
-          <h1>Poriadok<br>bohoslužieb</h1>
-          <p class="places">Šambron <span>·</span> Bajerovce <span>·</span> Hromoš</p>
-          <a class="hero-action" href="#rozpis">Prejsť na rozpis <span aria-hidden="true">↓</span></a>
-        </div>
-        <figure class="church">
-          <img src="cerkov.webp" alt="Biely gréckokatolícky chrám v Šambrone pri pohľade z ulice" width="947" height="768" fetchpriority="high">
-          <figcaption><span>Šambron</span>Chrám Ochrany Presvätej Bohorodičky</figcaption>
-        </figure>
+      <div class="quick" aria-live="polite">
+        <section class="quick-today" aria-labelledby="today-title">
+          <div class="quick-heading">
+            <h2 id="today-title"><span class="status-dot" aria-hidden="true"></span>Dnes vo farnosti</h2>
+            <p id="today-date"></p>
+          </div>
+          <div id="today"><p class="detail">Načítavam poriadok…</p></div>
+        </section>
+        <section class="quick-next" aria-labelledby="next-title">
+          <div class="quick-heading">
+            <h2 id="next-title">Najbližší termín</h2>
+            <p id="next-date" hidden></p>
+          </div>
+          <div id="next"><p class="detail">Načítavam poriadok…</p></div>
+        </section>
       </div>
+      <a class="jump" href="#rozpis">Celý rozpis <span aria-hidden="true">↓</span></a>
     </div>
   </header>
   <main class="wrap">
     <noscript><p class="notice">Zapnite JavaScript alebo otvorte pôvodný farský rozpis cez odkaz v pätičke.</p></noscript>
-    <div class="summary" aria-live="polite">
-      <section class="today-card">
-        <div class="card-heading">
-          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M8 4v4m8-4v4M4 11h16m-12 4h3"/></svg></span>
-          <div><h2>Dnes</h2><p class="detail" id="today-date"></p></div>
-        </div>
-        <div id="today"><p class="detail">Načítavam poriadok…</p></div>
-      </section>
-      <section class="next-card">
-        <div class="card-heading">
-          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span>
-          <div><h2>Najbližší termín</h2><p class="detail" id="next-date" hidden></p></div>
-        </div>
-        <div id="next"><p class="detail">Načítavam poriadok…</p></div>
-      </section>
-    </div>
     <section class="schedule-section" id="rozpis" aria-labelledby="schedule-title">
       <div class="toolbar">
         <div class="schedule-heading">
           <p class="eyebrow">Liturgický kalendár</p>
-          <h2 id="schedule-title">Rozpis bohoslužieb</h2>
+          <h2 id="schedule-title">Týždenný rozpis</h2>
           <p id="range" class="detail"></p>
         </div>
         <div class="filters">
@@ -75,17 +69,16 @@
           </label>
         </div>
       </div>
-      <div id="schedule" aria-live="polite"></div>
+      <div id="schedule" class="schedule" aria-live="polite"></div>
     </section>
   </main>
   <footer id="o-prehlade">
     <div class="wrap footer-inner">
       <div>
-        <p class="eyebrow">Farnosť Šambron</p>
         <h2>O prehľade</h2>
-        <p>Časy sú automaticky spracované z farských poriadkov. Úmysly, úplné oznamy a prípadné zmeny nájdete vo farskom origináli.</p>
-        <a href="https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb">Všetky poriadky na farskej stránke <span aria-hidden="true">↗</span></a>
-        <p class="photo-credit"><a href="https://commons.wikimedia.org/wiki/File:Sambron13Slovakia.JPG">Fotografia chrámu</a> · Jozef Kotulič, Wikimedia Commons · <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a> · WebP, výrez pri zobrazení</p>
+        <p>Časy preberáme z farských poriadkov. Úmysly, úplné oznamy a prípadné zmeny nájdete vo farskom origináli.</p>
+        <a href="https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb">Farské poriadky <span aria-hidden="true">↗</span></a>
+        <p class="art-credit">Ilustrácia v hlavičke zobrazuje Chrám Ochrany Presvätej Bohorodičky v Šambrone. <a href="https://sk.wikipedia.org/wiki/S%C3%BAbor:Cerkovsambron.png">Fotografia na Wikipédii</a></p>
       </div>
       <details class="developer">
         <summary>Informácie pre developerov</summary>
