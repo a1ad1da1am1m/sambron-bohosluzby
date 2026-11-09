@@ -7,8 +7,8 @@
   <meta name="description" content="Dnešné časy a aktuálny liturgický poriadok farnosti Šambron pre Šambron, Bajerovce a Hromoš.">
   <title>Poriadok bohoslužieb | Farnosť Šambron</title>
   <link rel="icon" href="kriz.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=13">
-  <script src="prehlad.js?v=8" defer></script>
+  <link rel="stylesheet" href="style.css?v=14">
+  <script src="prehlad.js?v=9" defer></script>
 </head>
 <body>
   <a class="skip" href="#rozpis">Preskočiť na rozpis</a>
@@ -32,7 +32,7 @@
           <a class="jump" href="#rozpis"><span aria-hidden="true">↓</span> Týždenný rozpis</a>
         </div>
       </div>
-      <div class="quick" aria-live="polite">
+      <div class="quick" id="quick-summary" aria-live="polite">
         <section class="quick-today" id="dnes" aria-labelledby="today-title">
           <div class="quick-heading">
             <h2 id="today-title"><span class="status-dot" aria-hidden="true"></span>Dnes</h2>
@@ -40,7 +40,7 @@
           </div>
           <div id="today"><p class="detail">Načítavam poriadok…</p></div>
         </section>
-        <section class="quick-next" aria-labelledby="next-title">
+        <section class="quick-next" id="next-section" aria-labelledby="next-title">
           <div class="quick-heading">
             <h2 id="next-title">Najbližší termín</h2>
             <p id="next-date" hidden></p>

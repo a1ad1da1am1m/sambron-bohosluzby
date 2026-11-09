@@ -183,3 +183,6 @@ footer p { margin-block: .35rem .65rem; }
 .update-status { padding-left: 1.5rem; border-left: 1px solid #c4d2c8; }
 .last-update strong { display: inline-block; margin-top: .25rem; color: var(--ink); font-size: 1.05rem; }
 @media (max-width: 41rem) { .update-status { padding: 1.2rem 0 0; border-left: 0; border-top: 1px solid #c4d2c8; } }
+
+.quick.today-only { grid-template-columns: minmax(0, 1fr); }
+.quick .nearest-tag { display: inline-block; margin-top: .35rem; padding: .15rem .4rem; border: 1px solid #8bb79d; border-radius: .25rem; color: #d9f0dc; font-size: .68rem; font-weight: 700; }

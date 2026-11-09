@@ -40,7 +40,7 @@ function eventsInTown(day) {
   return (day?.events ?? []).filter((event) => !townFilter.value || event.town === townFilter.value);
 }
 
-function eventList(events, detailed = false) {
+function eventList(events, detailed = false, nearestTime = null) {
   const list = element("ul", "", detailed ? "events events-detailed" : "events");
   for (const event of events) {
     const item = element("li");
@@ -64,6 +64,7 @@ function eventList(events, detailed = false) {
     } else {
       item.append(place);
       if (event.label) item.append(element("small", event.label, "event-label"));
+      if (event.time === nearestTime) item.append(element("small", "Najbližšia", "nearest-tag"));
     }
     list.append(item);
   }
@@ -74,10 +75,7 @@ function renderSummary(now, active) {
   get("today-date").textContent = format(fullDate, now.date);
   const day = active?.days.find((entry) => entry.date === now.date);
   const events = eventsInTown(day);
-  get("today").replaceChildren(events.length ? eventList(events) : element("p",
-    day ? day.message ?? "Dnes nie je uvedený termín pre zvolený filter."
-      : active ? "V poriadku na dnešný deň nie je uvedený termín." : "Poriadok na dnešný deň zatiaľ nemáme.", "detail"
-  ));
+
 
   const upcoming = schedules.flatMap((item) => item.days
     .filter((entry) => entry.date >= now.date && scheduleOn(entry.date) === item)
@@ -85,11 +83,19 @@ function renderSummary(now, active) {
     .filter((event) => event.date > now.date || event.time >= now.time)
     .sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
 
+  const first = upcoming[0];
+  const nearestToday = first?.date === now.date;
+  get("today").replaceChildren(events.length ? eventList(events, false, nearestToday ? first.time : null) : element("p",
+    day ? day.message ?? "Dnes nie je uvedený termín pre zvolený filter."
+      : active ? "V poriadku na dnešný deň nie je uvedený termín." : "Poriadok na dnešný deň zatiaľ nemáme.", "detail"
+  ));
+  get("next-section").hidden = !first || nearestToday;
+  get("quick-summary").classList.toggle("today-only", !first || nearestToday);
+
   const next = get("next");
   const nextDate = get("next-date");
   nextDate.hidden = !upcoming.length;
   if (upcoming.length) {
-    const first = upcoming[0];
     nextDate.textContent = format(fullDate, first.date);
     next.replaceChildren(eventList(upcoming.filter((event) => event.date === first.date && event.time === first.time)));
   } else {
