@@ -182,7 +182,4 @@ footer p { margin-block: .35rem .65rem; }
 .notice-shortcut span { color: var(--muted); font-size: .8rem; }
 .update-status { padding-left: 1.5rem; border-left: 1px solid #c4d2c8; }
 .last-update strong { display: inline-block; margin-top: .25rem; color: var(--ink); font-size: 1.05rem; }
-.update-button { display: inline-flex; align-items: center; min-height: 2.75rem; margin-top: .3rem; padding: .55rem .85rem; border-radius: .4rem; background: var(--forest); color: white; font-weight: 700; text-decoration: none; }
-.update-button:hover { background: var(--accent); }
-.update-help { font-size: .78rem; max-width: 30rem; }
 @media (max-width: 41rem) { .update-status { padding: 1.2rem 0 0; border-left: 0; border-top: 1px solid #c4d2c8; } }

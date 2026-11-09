@@ -34,6 +34,6 @@ Import rozlišuje rozpis podľa jeho názvu a obsahu tabuľky. Poškodený poria
 
 JSON obsahuje polia `schedules` a `announcements`. Import kontroluje prvých 30 jedinečných odkazov na zdrojovej stránke, uchováva najviac 12 oznamov, opravy páruje podľa URL a pri zlyhaní konkrétneho článku zachová poslednú uloženú verziu. Oznamy staršie ako 45 dní sú označené ako staršie a predvolene zbalené. Neznámy dátum sa neodhaduje a taký oznam zostane tiež zbalený. Dátum zverejnenia neurčuje platnosť; formulácie ako „zajtra“ zostávajú v pôvodnom znení. Príspevky hlbšie v archíve za prvou stránkou sa automaticky nedohľadávajú.
 
-## Posledná kontrola a ručné spustenie
+## Posledná kontrola
 
-Pätička zobrazuje čas `lastCheckedAt` v časovom pásme Europe/Bratislava. Ide o kontrolu farského zdroja, nie čas otvorenia webu. Pri úplnom výpadku zostáva posledný uložený čas; pri čiastočnom importe sa nastaví `partialCheck` a web zobrazí upozornenie. Tlačidlo „Aktualizovať ihneď“ otvorí príslušný workflow na GitHube. Oprávnený prihlásený používateľ ho spustí cez „Run workflow“. Verejná stránka neobsahuje token a samotné otvorenie odkazu import nespúšťa.
+Pätička zobrazuje čas `lastCheckedAt` v časovom pásme Europe/Bratislava. Ide o kontrolu farského zdroja, nie čas otvorenia webu. Pri úplnom výpadku zostáva posledný uložený čas; pri čiastočnom importe sa nastaví `partialCheck` a web zobrazí upozornenie.
