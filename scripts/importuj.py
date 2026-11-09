@@ -300,6 +300,7 @@ def import_schedules(today):
     notices = {item["source"]: item for item in previous_data.get("announcements", [])}
     by_url = {item["source"]: item for item in previous if item["end"] >= cutoff}
     valid = 0
+    failed = 0
     for url in links[:30]:
         try:
             article = fetch(url)
@@ -311,6 +312,7 @@ def import_schedules(today):
             schedule = parse_article(article, url)
             notices.pop(url, None)
         except (ValueError, URLError, TimeoutError, html.etree.LxmlError) as error:
+            failed += 1
             print(f"{url}: {error}", file=sys.stderr)
             continue
         valid += 1
@@ -326,7 +328,9 @@ def import_schedules(today):
 
     schedules = sorted(by_url.values(), key=lambda item: (item["start"], item["source"]), reverse=True)
     announcements = sorted(notices.values(), key=lambda item: (item.get("published") or "", item["source"]), reverse=True)[:12]
-    result = json.dumps({"schedules": schedules, "announcements": announcements}, ensure_ascii=False, indent=2) + "\n"
+    result = json.dumps({"schedules": schedules, "announcements": announcements,
+                         "lastCheckedAt": datetime.now(ZoneInfo("Europe/Bratislava")).isoformat(timespec="seconds"),
+                         "partialCheck": bool(failed)}, ensure_ascii=False, indent=2) + "\n"
     if result != OUTPUT.read_text(encoding="utf-8"):
         temp = OUTPUT.with_suffix(".tmp")
         temp.write_text(result, encoding="utf-8")

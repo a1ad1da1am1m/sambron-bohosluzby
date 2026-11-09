@@ -2,7 +2,7 @@ import gzip
 import json
 import tempfile
 import unittest
-from datetime import date
+from datetime import date, datetime
 from email.message import Message
 from io import BytesIO
 from pathlib import Path
@@ -137,7 +137,10 @@ class ImportTest(unittest.TestCase):
                                      f"<tr><td>ŠTVRTOK 08.10.</td><td>Sviatok</td><td>Š {hour}.30</td></tr>")
                     with patch.object(importuj, "fetch", side_effect=[listing, source]):
                         importuj.import_schedules(date(2026, 10, 8))
-                    schedules = json.loads(output.read_text())["schedules"]
+                    saved = json.loads(output.read_text())
+                    self.assertIsNotNone(datetime.fromisoformat(saved["lastCheckedAt"]).utcoffset())
+                    self.assertFalse(saved["partialCheck"])
+                    schedules = saved["schedules"]
                     self.assertEqual(len(schedules), 1)
                     self.assertEqual(schedules[0]["days"][0]["events"][0]["time"], f"{hour}:30")
                 last_good = output.read_bytes()

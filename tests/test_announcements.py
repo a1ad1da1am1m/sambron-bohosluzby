@@ -52,6 +52,8 @@ class AnnouncementsTest(unittest.TestCase):
             with patch.object(importuj, 'OUTPUT', output), patch.object(importuj, 'fetch', side_effect=[listing,html.fromstring(NOTICE),URLError('offline')]):
                 importuj.import_schedules(date(2026,11,8))
             data = json.loads(output.read_text())
+            self.assertTrue(data['partialCheck'])
+            self.assertIn('lastCheckedAt', data)
             self.assertEqual(data['schedules'], previous['schedules'])
             self.assertEqual(len(data['announcements']), 2)
             self.assertEqual(data['announcements'][0]['source'], URL)

@@ -222,9 +222,14 @@ function renderAnnouncements(items) {
 
 async function init() {
   try {
-    const response = await fetch("./poriadky.json");
+    const response = await fetch("./poriadky.json", { cache: "no-store" });
     if (!response.ok) throw new Error(String(response.status));
     const data = await response.json();
+    const checked = new Date(data.lastCheckedAt ?? "");
+    get("last-updated").textContent = Number.isNaN(checked.getTime()) ? "Čas kontroly zatiaľ nie je dostupný." :
+      new Intl.DateTimeFormat("sk-SK", { timeZone: zone, dateStyle: "medium", timeStyle: "short" }).format(checked);
+    get("update-warning").hidden = !data.partialCheck;
+    get("update-warning").textContent = data.partialCheck ? "Časť príspevkov sa nepodarilo overiť. Pri nich zostali posledné uložené údaje." : "";
     schedules = data.schedules ?? [];
     renderAnnouncements(data.announcements ?? []);
     for (const item of schedules) {
@@ -243,6 +248,7 @@ async function init() {
       else renderSummary(now, scheduleOn(now.date));
     }, 60_000);
   } catch (error) {
+    get("last-updated").textContent = "Čas kontroly sa nepodarilo načítať.";
     get("today").textContent = "Rozpis sa nepodarilo načítať.";
     get("next").textContent = "Údaje sú dočasne nedostupné.";
     get("schedule").append(element("p", "Skúste obnoviť stránku alebo otvorte farský originál nižšie.", "notice"));
