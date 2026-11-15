@@ -1,6 +1,157 @@
 {
   "schedules": [
     {
+      "start": "2026-11-16",
+      "end": "2026-11-22",
+      "source": "https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb/-/blogs/liturgicky-pori-463",
+      "days": [
+        {
+          "date": "2026-11-16",
+          "feast": "Sv. ap. a evanj. Matúš",
+          "events": [
+            {
+              "time": "17:30",
+              "town": "Šambron",
+              "details": [
+                "+ Anna Hardoňová 122",
+                "(r.Sokolova 24)"
+              ]
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-17",
+          "feast": "Sv.Gregor Divotvorca",
+          "events": [
+            {
+              "time": "17:30",
+              "town": "Šambron",
+              "details": [
+                "+ Mária Petrusová 85",
+                "(r.Legnavska)"
+              ]
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-18",
+          "feast": "Sv.muč. Platon a Roman",
+          "events": [
+            {
+              "time": "17:30",
+              "town": "Šambron",
+              "details": [
+                "+ Helena Sekeráková",
+                "(r.Kundracikova 118)"
+              ]
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-19",
+          "feast": "Sv.prorok Abdiáš Sv.muč. Barlaam",
+          "events": [
+            {
+              "time": "09:00",
+              "town": "Hromoš",
+              "details": [
+                "+ z rod.Kočišovej",
+                "(d.Kr.Mojcherová)"
+              ]
+            },
+            {
+              "time": "17:30",
+              "town": "Šambron",
+              "details": [
+                "+ Helena Hricková 69",
+                "(r.Hardoňova 68)"
+              ]
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-20",
+          "feast": "Predprazd.Vstupu MP OY do chrámu",
+          "events": [
+            {
+              "time": "17:30",
+              "town": "Šambron",
+              "details": [
+                "+ Anna, Peter, Vladimír",
+                "(r.Kopčákova 2)"
+              ]
+            }
+          ],
+          "notes": [
+            "/slov./"
+          ]
+        },
+        {
+          "date": "2026-11-21",
+          "feast": "Vstup MP OY do chrámu /VOVEDENIJE/ = požehnanie detí a myrovanie =",
+          "events": [
+            {
+              "time": "09:00",
+              "town": "Šambron",
+              "details": [
+                "* veriaci farnosti"
+              ]
+            },
+            {
+              "time": "10:30",
+              "town": "Hromoš",
+              "details": [
+                "* jub.Mikuláš Legnavský",
+                "(d.Ľ.Kočiš)"
+              ]
+            },
+            {
+              "time": "15:00",
+              "town": "Bajerovce",
+              "details": [
+                "* rod.Kormošova 109"
+              ]
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-22",
+          "feast": "XXVI.po 50-ici NAŠA ZBIERKA",
+          "events": [
+            {
+              "time": "08:00",
+              "town": "Hromoš",
+              "details": [
+                "+ Štefan, Karol, …",
+                "(r.Kočiš - Bagoo)"
+              ]
+            },
+            {
+              "time": "09:15",
+              "town": "Bajerovce",
+              "details": [
+                "* Peter, Andrea, …",
+                "(r.Kordiakova - KR.L.)"
+              ]
+            },
+            {
+              "time": "10:30",
+              "town": "Šambron",
+              "details": [
+                "* veriaci farnosti /csl./"
+              ]
+            }
+          ],
+          "notes": []
+        }
+      ]
+    },
+    {
       "start": "2026-11-09",
       "end": "2026-11-15",
       "source": "https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb/-/blogs/liturgicky-pori-462",
@@ -789,6 +940,6 @@
       "links": []
     }
   ],
-  "lastCheckedAt": "2026-11-15T19:54:43+01:00",
+  "lastCheckedAt": "2026-11-15T21:49:48+01:00",
   "partialCheck": false
 }
