@@ -1,6 +1,149 @@
 {
   "schedules": [
     {
+      "start": "2026-11-23",
+      "end": "2026-11-29",
+      "source": "https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb/-/blogs/liturgicky-pori-464",
+      "days": [
+        {
+          "date": "2026-11-23",
+          "feast": "Sv.o.Amfilochios a Gregor",
+          "events": [
+            {
+              "time": "17:30",
+              "town": "Šambron",
+              "details": [
+                "+ Helena Hricková 69",
+                "(d.D.Hricko 69)"
+              ]
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-24",
+          "feast": "Sv.veľkomuč. Katarína a Merkur",
+          "events": [
+            {
+              "time": "17:30",
+              "town": "Šambron",
+              "details": [
+                "+ Ľuboš Ridilla",
+                "(r.Filičkova)"
+              ]
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-25",
+          "feast": "Zakončenie Sviatku Vstupu MP OY",
+          "events": [
+            {
+              "time": "15:45",
+              "town": "Hromoš",
+              "details": [
+                "+ Ján s panych. /výročná/",
+                "(r.Plavnicka 99)"
+              ]
+            },
+            {
+              "time": "17:30",
+              "town": "Šambron",
+              "details": [
+                "+ Anna, Peter Hardoňoví 122",
+                "(r.Kopčákova 136)"
+              ]
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-26",
+          "feast": "Prep.Alypios Posvätenie chrámu Sv.Juraja",
+          "events": [
+            {
+              "time": "09:00",
+              "town": "Bajerovce",
+              "details": [
+                "* jub.o.Jozafát Štefan",
+                "(r.bohuznáma)"
+              ]
+            },
+            {
+              "time": "17:30",
+              "town": "Šambron",
+              "details": [
+                "+ Mária Petrusová 85",
+                "(r.Lukackova 155)"
+              ]
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-27",
+          "feast": "Sv.muč.Jakub Prep.Palladios",
+          "events": [
+            {
+              "time": "17:30",
+              "town": "Šambron",
+              "details": [
+                "+ Helena Hardoňová 54",
+                "/slov./",
+                "(d.H.Macurová 107)"
+              ]
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-28",
+          "feast": "Prep.muč.Štefan Nový a Irenarch",
+          "events": [
+            {
+              "time": "09:00",
+              "town": "Šambron",
+              "details": [
+                "+ Mária Bialková 94",
+                "(d.Ľ.Semanová)"
+              ]
+            }
+          ],
+          "notes": []
+        },
+        {
+          "date": "2026-11-29",
+          "feast": "XXVII.po 50-ici ZBIERKA: CHARITA",
+          "events": [
+            {
+              "time": "08:00",
+              "town": "Hromoš",
+              "details": [
+                "* rod.Knapikova 12"
+              ]
+            },
+            {
+              "time": "09:15",
+              "town": "Bajerovce",
+              "details": [
+                "* Mária, a ost. ...",
+                "(r.Kundracikova 85)"
+              ]
+            },
+            {
+              "time": "10:30",
+              "town": "Šambron",
+              "details": [
+                "* veriaci farnosti /slov./"
+              ]
+            }
+          ],
+          "notes": []
+        }
+      ]
+    },
+    {
       "start": "2026-11-16",
       "end": "2026-11-22",
       "source": "https://www.mojakomunita.sk/web/gkc-farnost-sambron/poriadok-bohosluzieb/-/blogs/liturgicky-pori-463",
@@ -798,6 +941,6 @@
       "links": []
     }
   ],
-  "lastCheckedAt": "2026-11-22T17:56:09+01:00",
+  "lastCheckedAt": "2026-11-22T19:58:20+01:00",
   "partialCheck": false
 }
